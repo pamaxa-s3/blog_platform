@@ -1,5 +1,25 @@
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
+import MainLayout from '../layouts/MainLayout';
+import Home from '../pages/Home/Home';
+import PostDetail from '../pages/Post/PostDetail'
+import SearchResults from '../pages/Search/SearchResults'
+import About from '../pages/About/About'
+import AuthorProfile from '../pages/Author/AuthorProfile'
+import AuthorPosts from '../pages/Author/AuthorPosts'
+import AuthorAbout from '../pages/Author/AuthorAbout'
+import CategoriesList from '../pages/Categories/CategoriesList'
+import CategoryDetail from '../pages/Categories/CategoryDetail'
+import AuthLayout from '../layouts/AuthLayout'
+import Login from '../pages/Auth/Login'
+import PostCreate from '../pages/Post/PostCreate'
+import PostEdit from '../pages/Post/PostEdit'
+import DashboardLayout from '../layouts/DashboardLayout'
+import DashboardHome from '../pages/Dashboard/DashboardHome'
+import MyPosts from '../pages/Dashboard/MyPosts'
+import Settings from '../pages/Dashboard/Settings'
+import NotFound from '../pages/NotFound/NotFound'
+
 
 const AppRouter = () => {
 	return (
