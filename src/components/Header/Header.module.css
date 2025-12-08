@@ -1,0 +1,257 @@
+/* ---------- COLOR PALETTE ---------- */
+:root {
+	--accent: #a41f13;
+	--light: #faf5f1;
+	--light2: #e0dbd8;
+	--dark: #292f36;
+	--muted: #8f7a6e;
+}
+
+/* ---------- HEADER ---------- */
+.header {
+	width: 100%;
+	background: var(--dark);
+	color: var(--light);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 24px;
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.headerLogo {
+	font-size: 1.4rem;
+	font-weight: 700;
+	color: var(--light);
+}
+
+
+/* ---------- NAVIGATION ---------- */
+.nav {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+/* burger */
+.burger {
+	display: none;
+	flex-direction: column;
+	cursor: pointer;
+	gap: 4px;
+}
+
+.bar {
+	width: 24px;
+	height: 3px;
+	background: var(--light);
+	border-radius: 2px;
+}
+
+/* nav links */
+.nav_links {
+	display: flex;
+	gap: 24px;
+	align-items: center;
+}
+
+.nav_links a {
+	color: var(--light);
+	text-decoration: none;
+	font-weight: 500;
+	transition: color 0.2s ease;
+}
+
+.nav_links a:hover {
+	color: var(--accent);
+}
+
+.active {
+	color: var(--accent) !important;
+}
+
+/* ---------- DROPDOWN ---------- */
+.dropdown {
+	position: relative;
+	cursor: pointer;
+}
+
+.dropdown_label {
+	color: var(--light);
+}
+
+.dropdown_menu {
+	position: absolute;
+	top: 30px;
+	left: 0;
+	background: var(--light);
+	border: 1px solid var(--light2);
+	border-radius: 6px;
+	display: flex;
+	flex-direction: column;
+	min-width: 150px;
+	padding: 8px 0;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	z-index: 100;
+}
+
+.dropdown_menu a {
+	padding: 8px 14px;
+	color: var(--dark);
+	font-weight: 500;
+	transition: background 0.2s ease;
+}
+
+.dropdown_menu a:hover {
+	background: var(--light2);
+}
+
+
+/* ---------- SEARCH ---------- */
+.searchContainer {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.searchIcon {
+	position: absolute;
+	left: 10px;
+	width: 20px;
+	height: 20px;
+	pointer-events: none;
+	fill: var(--muted);
+}
+
+.inputSearch {
+	padding: 10px 12px 10px 36px;
+	border-radius: 6px;
+	border: 1px solid var(--light2);
+	background: var(--light);
+	outline: none;
+	font-size: 0.95rem;
+	color: var(--dark);
+	transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inputSearch:focus {
+	border-color: var(--accent);
+	box-shadow: 0 0 0 2px rgba(164, 31, 19, 0.25);
+}
+
+
+/* ---------- AUTH BLOCK ---------- */
+.authBlock {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.authButton {
+	padding: 8px 16px;
+	border-radius: 6px;
+	border: none;
+	font-size: 0.9rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s ease, color 0.2s ease;
+}
+
+.authButtonLogin {
+	background: var(--accent);
+	color: var(--light);
+}
+
+.authButtonLogin:hover {
+	background: #8c180f;
+}
+
+.authButtonLogout {
+	background: var(--light2);
+	color: var(--dark);
+}
+
+.authButtonLogout:hover {
+	background: #d1ccc9;
+}
+
+/* user info */
+.userInfo {
+	position: relative;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.avatar {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	border: 2px solid var(--accent);
+	object-fit: cover;
+}
+
+/* dropdown inside user block */
+.userInfo .dropdownMenu {
+	position: absolute;
+	right: 0;
+	top: 46px;
+	background: var(--light);
+	border-radius: 6px;
+	min-width: 160px;
+	padding: 8px 0;
+	border: 1px solid var(--light2);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+	display: flex;
+	flex-direction: column;
+}
+
+.userInfo .dropdownMenu a,
+.userInfo .dropdownMenu button {
+	padding: 10px 14px;
+	color: var(--dark);
+	font-weight: 500;
+	background: none;
+	border: none;
+	text-align: left;
+	cursor: pointer;
+}
+
+.userInfo .dropdownMenu a:hover,
+.userInfo .dropdownMenu button:hover {
+	background: var(--light2);
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+	.burger {
+		display: flex;
+	}
+
+	.nav_links {
+		position: absolute;
+		top: 60px;
+		left: 0;
+		width: 100%;
+		background: var(--dark);
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 16px;
+		gap: 16px;
+		display: none;
+	}
+
+	.nav_links.open {
+		display: flex;
+	}
+
+	.dropdown_menu {
+		position: static;
+		box-shadow: none;
+		border: none;
+	}
+}
