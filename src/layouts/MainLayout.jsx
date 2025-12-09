@@ -9,11 +9,11 @@ const MainLayout = () => {
 		<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
 			<Header />
 			<div className="layoutWrapper">
+				<Breadcrumbs />
 				<main>
 					<Outlet />
 				</main>
 				<Footer />
-				<Breadcrumbs />
 			</div>
 		</div>
 	)
