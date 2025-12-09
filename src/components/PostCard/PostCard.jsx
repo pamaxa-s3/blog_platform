@@ -18,37 +18,40 @@ const PostCard = ({
 }) => {
 	const author = authors.find(a => a.id === authorId);
 	const category = categories.find(c => c.id === categoryId);
+	const dateCreateAt = new Date(createdAt).toLocaleString("uk-UA");
 
 	return (
 		<div className={cls.postCard}>
-			<div className={cls.cardImage}>
+			<Link to={`/posts/${id}`} className={cls.imageWrapper}>
 				<img src={imageUrl} alt={title} />
+			</Link>
 
-				<div className={cls.cardContent}>
-					<Link to={`/posts/${id}`} className={cls.cardTitle}>
-						{title}
-					</Link>
+			<div className={cls.cardContent}>
+				<Link to={`/posts/${id}`} className={cls.cardTitle}>
+					{title}
+				</Link>
 
-					<p className={cls.cardExcerpt}>{excerpt}</p>
+				<p className={cls.cardExcerpt}>{excerpt}</p>
 
+				<div className={cls.meta}>
 					{author && (
-						<Link to={`/authors/${authorId}`}>
-							Автор: {author.name}
-						</Link>
+						<span>
+							Автор: <Link to={`/authors/${authorId}`}>{author.name}</Link>
+						</span>
 					)}
 
 					{category && (
-						<Link to={`/categories/${categoryId}`}>
-							Категорія: {category.name}
-						</Link>
+						<span>
+							Категорія: <Link to={`/categories/${categoryId}`}>{category.name}</Link>
+						</span>
 					)}
+				</div>
 
-					<span className={cls.cardDate}>{createdAt}</span>
+				<span className={cls.cardDate}>{dateCreateAt}</span>
 
-					<div className={cls.cardStatistics}>
-						<span>Переглядів: {views}</span>
-						<span>Коментарів: {commentsCount}</span>
-					</div>
+				<div className={cls.cardStatistics}>
+					<span>👁 {views}</span>
+					<span>💬 {commentsCount}</span>
 				</div>
 			</div>
 		</div>
@@ -56,3 +59,4 @@ const PostCard = ({
 };
 
 export default PostCard;
+

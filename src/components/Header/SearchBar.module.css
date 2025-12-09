@@ -1,0 +1,57 @@
+/* Контейнер інпуту */
+.searchContainer {
+	position: relative;
+	width: 100%;
+	max-width: 350px;
+}
+
+.searchContainer label {
+	display: flex;
+	align-items: center;
+	position: relative;
+	width: 100%;
+	cursor: text;
+}
+
+/* Іконка пошуку */
+.searchIcon {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 18px;
+	height: 18px;
+	fill: #8f7a6e; /* допоміжний колір */
+	pointer-events: none;
+	transition: transform 0.25s ease, fill 0.25s ease;
+}
+
+/* Інпут */
+.inputSearch {
+	width: 100%;
+	padding: 8px 12px 8px 36px; /* лівий padding для іконки */
+	border-radius: 8px;
+	border: 1px solid #e0dbd8; /* другорядний бордер */
+	background: #faf5f1; /* світлий фон */
+	color: #292f36; /* темний текст */
+	font-size: 14px;
+	transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.inputSearch::placeholder {
+	color: #8f7a6e; /* допоміжний текст */
+}
+
+/* Фокус на інпут */
+.inputSearch:focus {
+	outline: none;
+	border-color: #a41f13; /* акцент */
+	box-shadow: 0 0 4px rgba(164, 31, 19, 0.4);
+}
+
+/* Анімація іконки при фокусі */
+.inputSearch:focus + .searchIcon,
+.searchContainer input:focus ~ .searchIcon {
+	transform: translateY(-50%) translateX(4px);
+	fill: #a41f13; /* акцентний колір */
+}
