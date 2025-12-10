@@ -107,7 +107,7 @@
 
 /* Статистика */
 .cardStatistics {
-	margin-top: 8px;
+	margin-top: auto;
 	display: flex;
 	justify-content: flex-end;
 	gap: 15px;

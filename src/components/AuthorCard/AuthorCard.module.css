@@ -1,0 +1,89 @@
+.authorCard {
+	display: flex;
+	gap: 20px;
+	padding: 20px;
+	border: 1px solid #e0dbd8;
+	border-radius: 14px;
+	background: #faf5f1;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.authorCard:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.imageWrapper {
+	display: block;
+	min-width: 120px;
+	max-width: 120px;
+	height: 120px;
+	overflow: hidden;
+	border-radius: 50%;
+	border: 3px solid #a41f13;
+}
+
+.imageWrapper img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.authorContent {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	color: #292f36;
+}
+
+.authorTitle {
+	font-size: 20px;
+	font-weight: 700;
+	color: #292f36;
+	text-decoration: none;
+}
+
+.authorTitle:hover {
+	color: #a41f13;
+}
+
+.authorSlug {
+	font-size: 14px;
+	color: #8f7a6e;
+}
+
+.authorEmail {
+	font-size: 14px;
+	color: #8f7a6e;
+}
+
+.authorBio {
+	margin-top: 8px;
+	line-height: 1.4;
+	color: #292f36;
+}
+
+.social {
+	margin-top: 10px;
+	display: flex;
+	gap: 14px;
+}
+
+.social a {
+	color: #a41f13;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.social a:hover {
+	text-decoration: underline;
+}
+
+.authorStatistics {
+	margin-top: 16px;
+	display: flex;
+	gap: 20px;
+	font-size: 14px;
+	color: #292f36;
+}
