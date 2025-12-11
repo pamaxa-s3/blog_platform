@@ -44,21 +44,3 @@
     transform: translateY(0);
   }
 }
-
-/* Кнопка "Показати більше" */
-.loadMore {
-  display: block;
-  margin: 40px auto 0;
-  padding: 12px 26px;
-  font-size: 16px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  background-color: #a41f13;
-  color: #faf5f1;
-  transition: 0.3s;
-}
-
-.loadMore:hover {
-  background-color: #8c190f;
-}
