@@ -1,0 +1,156 @@
+.post {
+  max-width: 850px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* -------- TITLE -------- */
+.post h3 {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+/* -------- META INFO -------- */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 15px;
+  color: #555;
+}
+
+.meta span a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.meta span a:hover {
+  text-decoration: underline;
+}
+
+.cardDate {
+  color: #777;
+}
+
+.cardViews {
+  color: #555;
+  font-weight: 600;
+}
+
+/* -------- IMAGE -------- */
+.image img {
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+  object-fit: cover;
+}
+
+/* -------- TEXT -------- */
+.text {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #333;
+  white-space: pre-line;
+}
+
+/* -------- TAGS -------- */
+.tags {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.tags a {
+  background: #f1f5f9;
+  padding: 6px 12px;
+  border-radius: 12px;
+  color: #2563eb;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background .2s;
+}
+
+.tags a:hover {
+  background: #e2e8f0;
+}
+
+/* ======================================================== */
+/* ====================== ADAPTIVE ======================== */
+/* ======================================================== */
+
+/* Tablets — ≤ 1024px */
+@media (max-width: 1024px) {
+  .post {
+    padding: 26px;
+  }
+
+  .post h3 {
+    font-size: 28px;
+  }
+
+  .text {
+    font-size: 16px;
+  }
+}
+
+/* Mobile — ≤ 768px */
+@media (max-width: 768px) {
+  .post {
+    padding: 22px;
+    border-radius: 14px;
+    gap: 20px;
+  }
+
+  .post h3 {
+    font-size: 24px;
+  }
+
+  .meta {
+    font-size: 14px;
+    gap: 12px;
+  }
+
+  .text {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .tags a {
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 13px;
+  }
+}
+
+/* Mobile small — ≤ 480px */
+@media (max-width: 480px) {
+  .post {
+    padding: 18px;
+    gap: 18px;
+  }
+
+  .post h3 {
+    font-size: 21px;
+  }
+
+  .meta {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .image img {
+    border-radius: 10px;
+  }
+}
