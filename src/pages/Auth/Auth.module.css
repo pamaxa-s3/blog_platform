@@ -1,0 +1,122 @@
+/* =========================
+   WRAPPER
+========================= */
+.authWrapper {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 28px 24px;
+  background: #faf5f1;
+  border: 1px solid #e0dbd8;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================
+   TITLE
+========================= */
+.title {
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #292f36;
+}
+
+/* =========================
+   FORM
+========================= */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* =========================
+   FIELD
+========================= */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #8f7a6e;
+}
+
+.input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e0dbd8;
+  background: #fff;
+  font-size: 14px;
+  color: #292f36;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #a41f13;
+  box-shadow: 0 0 0 2px rgba(164, 31, 19, 0.15);
+}
+
+/* =========================
+   ERROR
+========================= */
+.error {
+  font-size: 13px;
+  color: #a41f13;
+  background: rgba(164, 31, 19, 0.08);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+.button {
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: 999px;
+  border: none;
+  background: #a41f13;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 6px 14px rgba(164, 31, 19, 0.3);
+}
+
+.button:hover:not(:disabled) {
+  background: #8f1a10;
+  transform: translateY(-1px);
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(164, 31, 19, 0.3);
+}
+
+.button:disabled {
+  background: #e0dbd8;
+  color: #8f7a6e;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* =========================
+   ADAPTIVE
+========================= */
+@media (max-width: 480px) {
+  .authWrapper {
+    margin: 32px 16px;
+    padding: 22px 18px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+}

@@ -1,7 +1,8 @@
+import CommentForm from './CommentForm';
 import cls from './Comments.module.css';
 
 const CommentItem = ({ comment }) => {
-  const dateCreateAt = new Date(comment.createdAt).toLocaleString("uk-UA");
+	const dateCreateAt = new Date(comment.createdAt).toLocaleString("uk-UA");
 	return (
 		<div className={cls.comment}>
 			<div className={cls.authorInfo}>
@@ -12,6 +13,7 @@ const CommentItem = ({ comment }) => {
 			</div>
 			<p className={cls.content}>{comment.content}</p>
 			<span className={cls.dateCreated}>{dateCreateAt}</span>
+
 		</div>
 	);
 };

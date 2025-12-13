@@ -42,6 +42,7 @@
 
 /* Контент */
 .cardContent {
+	min-height: 290px;
 	padding: 18px 22px;
 	display: flex;
 	flex-direction: column;

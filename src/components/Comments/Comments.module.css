@@ -120,3 +120,151 @@
     font-size: 12px;
   }
 }
+
+/* ==========================================
+   CREATE COMMENT FORM
+========================================== */
+.createComment {
+  margin-top: 32px;
+  padding: 20px;
+  background: #faf5f1;
+  border: 1px solid #e0dbd8;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(41, 47, 54, 0.06);
+}
+
+.createComment form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* LABEL */
+.createComment label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #292f36;
+}
+
+/* TEXTAREA */
+.createComment textarea {
+  min-height: 80px;
+  resize: none;
+  padding: 12px 14px;
+  font-size: 15px;
+  line-height: 1.5;
+  border-radius: 12px;
+  border: 1px solid #e0dbd8;
+  background: #faf5f1;
+  color: #292f36;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.createComment textarea::placeholder {
+  color: #8f7a6e;
+}
+
+.createComment textarea:focus {
+  outline: none;
+  border-color: #a41f13;
+  box-shadow: 0 0 4px rgba(164, 31, 19, 0.35);
+}
+
+/* WORD COUNTER */
+.wordCount {
+  align-self: flex-end;
+  font-size: 13px;
+  color: #8f7a6e;
+}
+
+/* ==========================================
+   ADAPTIVE
+========================================== */
+@media (max-width: 768px) {
+  .createComment {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .createComment textarea {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .createComment {
+    padding: 14px;
+  }
+
+  .createComment label {
+    font-size: 15px;
+  }
+
+  .wordCount {
+    font-size: 12px;
+  }
+}
+
+
+/* ==========================================
+   FORM FOOTER
+========================================== */
+.formFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ==========================================
+   SUBMIT BUTTON
+========================================== */
+.submitButton {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: none;
+  background: #a41f13;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease,
+              box-shadow 0.15s ease;
+  box-shadow: 0 4px 10px rgba(164, 31, 19, 0.25);
+}
+
+/* Hover */
+.submitButton:hover:not(:disabled) {
+  background: #8f1a10;
+  transform: translateY(-1px);
+}
+
+/* Active */
+.submitButton:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(164, 31, 19, 0.25);
+}
+
+/* Disabled */
+.submitButton:disabled {
+  background: #e0dbd8;
+  color: #8f7a6e;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ==========================================
+   ADAPTIVE
+========================================== */
+@media (max-width: 480px) {
+  .formFooter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .submitButton {
+    width: 100%;
+    text-align: center;
+  }
+}

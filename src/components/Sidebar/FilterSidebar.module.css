@@ -16,6 +16,7 @@
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 10px;
+  color:#292f36;
 }
 
 .filterSection h3 {
@@ -41,7 +42,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 15px;
+  font-size: 15px; color: #333;
   cursor: pointer;
   transition: color .2s;
 }
@@ -51,6 +52,7 @@
   height: 18px;
   accent-color: #2563eb; /* Синій, як у Tailwind */
   cursor: pointer;
+ color-scheme: none;
 }
 
 .filterGroup label:hover {
@@ -64,6 +66,7 @@ select {
   font-size: 15px;
   outline: none;
   transition: border-color .2s;
+  color-scheme:none;
 }
 
 select:focus {

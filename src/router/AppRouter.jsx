@@ -3,6 +3,7 @@ import { Suspense, lazy } from "react";
 import LoadingSpinner from '../components/common/LoadingSpinner'
 import ProtectedRoute from './ProtectedRoute';
 import ErrorBoundary from '../pages/ErrorBoundary/ErrorBoundary';
+import PublicRoute from './PublicRoute';
 
 // Layouts
 const MainLayout = lazy(() => import('../layouts/MainLayout'));
@@ -27,6 +28,8 @@ const CategoryDetail = lazy(() => import('../pages/Categories/CategoryDetail'));
 
 // Auth
 const Login = lazy(() => import('../pages/Auth/Login'));
+const Register = lazy(() => import('../pages/Auth/Register'));
+
 
 // Posts
 const PostCreate = lazy(() => import('../pages/Post/PostCreate'));
@@ -44,7 +47,7 @@ const AppRouter = () => {
 	return (
 		<Suspense fallback={<div style={{ padding: 40 }}><LoadingSpinner /></div>}>
 			<Routes errorElement={<ErrorBoundary />}>
-				
+
 				{/* Public routes */}
 				<Route path="/" element={<MainLayout />}>
 					<Route index element={<Home />} />
@@ -68,15 +71,23 @@ const AppRouter = () => {
 				</Route>
 
 				{/* Auth */}
-				<Route path="/login" element={<AuthLayout />}>
-					<Route index element={<Login />} />
+				<Route
+					element={
+						<PublicRoute>
+							<AuthLayout />
+						</PublicRoute>
+					}
+				>
+					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
 				</Route>
+
 
 				{/* Create & Edit Posts */}
 				<Route
 					path="/posts/new"
 					element={
-						<ProtectedRoute isAuthenticated={true}>
+						<ProtectedRoute>
 							<PostCreate />
 						</ProtectedRoute>
 					}
@@ -85,7 +96,7 @@ const AppRouter = () => {
 				<Route
 					path="/posts/:id/edit"
 					element={
-						<ProtectedRoute isAuthenticated={true}>
+						<ProtectedRoute>
 							<PostEdit />
 						</ProtectedRoute>
 					}
@@ -95,7 +106,7 @@ const AppRouter = () => {
 				<Route
 					path="/dashboard"
 					element={
-						<ProtectedRoute isAuthenticated={true}>
+						<ProtectedRoute>
 							<DashboardLayout />
 						</ProtectedRoute>
 					}
