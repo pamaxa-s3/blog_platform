@@ -1,4 +1,3 @@
-import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { posts } from '../../data/mockPosts';
 import { authors } from '../../data/mockAuthors';
@@ -6,6 +5,9 @@ import { categories } from '../../data/mockCategories';
 import { comments } from '../../data/mockComments';
 import cls from './PostDetail.module.css';
 import CommentsList from '../../components/Comments/CommentsList'
+import RelatedPosts from '../../components/RelatedPosts/RelatedPosts';
+
+
 
 const PostDetail = () => {
 	const { id } = useParams();
@@ -74,6 +76,10 @@ const PostDetail = () => {
 			<div className={cls.comments}>
 				<CommentsList comments={comments} />
 			</div>
+
+			<RelatedPosts currentPost={post} allPosts={posts} />
+
+
 		</section>
 	);
 };

@@ -1,0 +1,106 @@
+.relatedPosts {
+	margin-top: 40px;
+}
+
+.scrollWrapper {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+.cards {
+	display: flex;
+	gap: 16px;
+	overflow-x: auto;
+	scroll-behavior: smooth;
+	flex: 1;
+	padding-bottom: 8px;
+}
+
+.cards::-webkit-scrollbar {
+	display: none;
+}
+
+.card {
+	flex: 0 0 220px;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	text-decoration: none;
+	color: inherit;
+	overflow: hidden;
+	transition: transform .2s ease, box-shadow .2s ease;
+	content-visibility: auto;
+	contain-intrinsic-size: 220px 200px;
+}
+
+.card:hover {
+	transform: translateY(-4px);
+}
+
+.cardImage {
+	width: 100%;
+	height: 140px;
+	object-fit: cover;
+}
+
+.cardContent {
+	padding: 12px;
+}
+
+.scrollBtn {
+	background: rgba(0,0,0,0.1);
+	border: none;
+	border-radius: 50%;
+	width: 32px;
+	height: 32px;
+	font-size: 20px;
+	cursor: pointer;
+	margin: 0 4px;
+}
+
+.scrollBtn:disabled {
+	opacity: .3;
+	cursor: default;
+}
+
+/* dots */
+.dots {
+	display: flex;
+	justify-content: center;
+	gap: 6px;
+	margin-top: 12px;
+}
+
+.dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #ccc;
+}
+
+.dotActive {
+	background: #333;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+	.scrollWrapper {
+		display: block;
+	}
+
+	.cards {
+		flex-wrap: wrap;
+		overflow-x: visible;
+	}
+
+	.cardContent {
+		font-size: 12px;
+		flex: 1 1 220px;
+	}
+
+	.scrollBtn,
+	.dots {
+		display: none;
+	}
+}
