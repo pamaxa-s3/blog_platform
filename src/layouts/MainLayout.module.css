@@ -1,0 +1,20 @@
+.mainLayout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layoutWrapper {
+  flex: 1;
+  background-color: #f6f7f9;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.main {
+  margin: 20px 0;
+}

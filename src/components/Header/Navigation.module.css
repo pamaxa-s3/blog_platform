@@ -1,0 +1,51 @@
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+/* =========================
+   LINKS
+========================= */
+.nav_links {
+  display: flex;
+  gap: 18px;
+}
+
+.nav_links a {
+  color: #faf5f1;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+}
+
+.nav_links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #a41f13;
+  transition: width 0.25s;
+}
+
+.nav_links a:hover::after,
+.active::after {
+  width: 100%;
+}
+
+.active {
+  color: #a41f13;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+  .nav_links {
+    flex-direction: column;
+    padding: 16px;
+  }
+}

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import cls from './Auth.module.css';
 
@@ -8,7 +8,8 @@ const Login = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	const from = location.state?.from?.pathname || '/dashboard';
+	const from = location.state?.from?.pathname || '/';
+	// const from = location.state?.from?.pathname || '/dashboard';
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -66,6 +67,11 @@ const Login = () => {
 					{isLoading ? 'Logging in…' : 'Login'}
 				</button>
 			</form>
+
+			<p style={{ color: '#3b3b3b' }}>
+				No account? <Link to="/register" style={{ color: '#2b1de6' }}>Register</Link>
+			</p>
+
 		</div>
 	);
 };

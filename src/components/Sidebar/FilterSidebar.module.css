@@ -1,74 +1,138 @@
+/* Контейнер сайдбару */
 .sidebar {
   width: 260px;
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  position: sticky;
-  top: 20px;
-  height: fit-content;
+  background: #fff;
+  border: 1px solid #e1e4ea;
+  border-radius: 10px;
+  padding: 16px;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
 
-.sidebar h2 {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  color:#292f36;
-}
-
-.filterSection h3 {
-  font-size: 16px;
+/* Заголовок */
+.title {
+  font-size: 18px;
   font-weight: 600;
-  margin-bottom: 8px;
-  color: #333;
+  margin-bottom: 16px;
+  color: #3b3b3b;
 }
 
-.filterSection {
+/* Розділ фільтру */
+.section {
+  margin-bottom: 20px;
+}
+
+.section h3 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #3b3b3b;
+}
+
+/* Група чекбоксів */
+.checkboxGroup {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.filterGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.filterGroup label {
+/* Окремий чекбокс */
+.checkbox {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 15px; color: #333;
+  font-size: 14px;
   cursor: pointer;
-  transition: color .2s;
+  color: #333;
+  transition: color 0.2s;
 }
 
-.filterGroup input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: #2563eb; /* Синій, як у Tailwind */
-  cursor: pointer;
- color-scheme: none;
+.checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #a41f13; /* кольорова галочка */
+  color-scheme: auto;
 }
 
-.filterGroup label:hover {
-  color: #2563eb;
+/* Hover */
+.checkbox:hover {
+  color: #a41f13;
 }
 
+/* Select */
 select {
+  width: 100%;
   padding: 8px 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 15px;
-  outline: none;
-  transition: border-color .2s;
-  color-scheme:none;
+  border-radius: 6px;
+  border: 1px solid #d0d4da;
+  background-color: #fafafa;
+  font-size: 14px;
+  color: #333;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 select:focus {
-  border-color: #2563eb;
+  outline: none;
+  border-color: #a41f13;
+  box-shadow: 0 0 4px rgba(164, 31, 19, 0.3);
+}
+
+/* Кнопка скидання */
+.resetButton {
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #d33;
+  background: #fff;
+  color: #d33;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.resetButton:hover {
+  background: #d33;
+  color: #fff;
+}
+
+/* Мобільний toggle button */
+.toggleButton {
+  display: none;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d0d4da;
+  background: #f6f7f9;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.content {
+  display: block;
+}
+
+/* Мобільні стилі */
+@media (max-width: 768px) {
+
+  .sidebar {
+    width: 100%;
+    border-radius: 0;
+    padding: 12px;
+  }
+
+  .toggleButton {
+    display: block;
+    color: #3b3b3b;
+  }
+
+  .content {
+    display: none;
+    transition: max-height 0.3s ease;
+    overflow: hidden;
+  }
+
+  .open .content {
+    display: block;
+  }
 }

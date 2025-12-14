@@ -43,9 +43,10 @@ const Header = () => {
 					</Link>
 				</div>
 
-				<nav className={`${cls.mobileMenu} ${menuOpen ? cls.show : ''}`}>
+				{/* ✅ DESKTOP NAV */}
+				<div className={cls.desktopNav}>
 					<Navigation />
-				</nav>
+				</div>
 
 				<div className={cls.searchContainer}>
 					<SearchBar
@@ -85,6 +86,10 @@ const Header = () => {
 						</div>
 					)}
 				</div>
+				{/* ✅ MOBILE MENU */}
+				<nav className={`${cls.mobileMenu} ${menuOpen ? cls.show : ''}`}>
+					<Navigation />
+				</nav>
 			</div>
 		</header>
 	);

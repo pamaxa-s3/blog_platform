@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import cls from './Header.module.css';
+import cls from './Navigation.module.css';
 
 const Navigation = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
