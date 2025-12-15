@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Navigation from './Navigation';
 import SearchBar from './SearchBar';
 import { useAuth } from '../../hooks/useAuth';
@@ -8,11 +8,12 @@ import cls from './Header.module.css';
 const Header = () => {
 	const [searchValue, setSearchValue] = useState('');
 	const [menuOpen, setMenuOpen] = useState(false);
+	const { search } = useLocation();
 
 	const { user, isAuthenticated, logout } = useAuth();
 	const navigate = useNavigate();
 
-	const handleOnChangeSearch = (e) => {
+	const handleOnChangeSearch = e => {
 		setSearchValue(e.target.value);
 	};
 
@@ -22,7 +23,7 @@ const Header = () => {
 
 	const handleLogout = () => {
 		logout();
-		navigate('/', { replace: true });
+		navigate(`/${search}`, { replace: true });
 	};
 
 	return (
@@ -31,14 +32,14 @@ const Header = () => {
 				<div className={cls.headerLeft}>
 					<button
 						className={`${cls.burger} ${menuOpen ? cls.open : ''}`}
-						onClick={() => setMenuOpen((prev) => !prev)}
+						onClick={() => setMenuOpen(prev => !prev)}
 					>
 						<span />
 						<span />
 						<span />
 					</button>
 
-					<Link to="/" className={cls.headerLogo}>
+					<Link to={`/${search}`} className={cls.headerLogo}>
 						Blog Platform
 					</Link>
 				</div>
@@ -74,7 +75,9 @@ const Header = () => {
 
 							<div className={cls.dropdownMenu}>
 								<Link to={`/authors/${user.id}`}>Профіль</Link>
-								<Link to="/dashboard/settings">Налаштування</Link>
+								<Link to="/dashboard/settings">
+									Налаштування
+								</Link>
 
 								<button
 									className={`${cls.authButton} ${cls.authButtonLogout}`}
@@ -87,7 +90,9 @@ const Header = () => {
 					)}
 				</div>
 				{/* ✅ MOBILE MENU */}
-				<nav className={`${cls.mobileMenu} ${menuOpen ? cls.show : ''}`}>
+				<nav
+					className={`${cls.mobileMenu} ${menuOpen ? cls.show : ''}`}
+				>
 					<Navigation />
 				</nav>
 			</div>

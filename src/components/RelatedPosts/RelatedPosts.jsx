@@ -6,7 +6,6 @@ import LazyImage from '../common/LazyImage/LazyImage';
 const CARD_WIDTH = 236; // 220 + gap
 
 const RelatedPosts = ({ currentPost, allPosts }) => {
-	// ✅ ХУКИ ЗАВЖДИ НА ПОЧАТКУ
 	const containerRef = useRef(null);
 	const [activeIndex, setActiveIndex] = useState(0);
 
@@ -14,10 +13,8 @@ const RelatedPosts = ({ currentPost, allPosts }) => {
 		.filter(
 			post =>
 				post.id !== currentPost.id &&
-				(
-					post.category === currentPost.category ||
-					post.tags?.some(tag => currentPost.tags?.includes(tag))
-				)
+				(post.category === currentPost.category ||
+					post.tags?.some(tag => currentPost.tags?.includes(tag)))
 		)
 		.slice(0, 3);
 
@@ -33,10 +30,8 @@ const RelatedPosts = ({ currentPost, allPosts }) => {
 		container.addEventListener('scroll', handleScroll);
 		return () => container.removeEventListener('scroll', handleScroll);
 	}, [related.length]);
-	// ✅ ЛОГІКА ПІСЛЯ ХУКІВ
+
 	if (!currentPost) return null;
-
-
 
 	if (!related.length) return null;
 
@@ -45,11 +40,9 @@ const RelatedPosts = ({ currentPost, allPosts }) => {
 
 		containerRef.current.scrollBy({
 			left: direction === 'left' ? -CARD_WIDTH : CARD_WIDTH,
-			behavior: 'smooth',
+			behavior: 'smooth'
 		});
 	};
-
-
 
 	return (
 		<div className={cls.relatedPosts}>
@@ -65,7 +58,7 @@ const RelatedPosts = ({ currentPost, allPosts }) => {
 				</button>
 
 				<div className={cls.cards} ref={containerRef}>
-					{related.map((post) => (
+					{related.map(post => (
 						<Link
 							key={post.id}
 							to={`/posts/${post.id}`}
@@ -97,7 +90,9 @@ const RelatedPosts = ({ currentPost, allPosts }) => {
 				{related.map((_, i) => (
 					<span
 						key={i}
-						className={`${cls.dot} ${i === activeIndex ? cls.dotActive : ''}`}
+						className={`${cls.dot} ${
+							i === activeIndex ? cls.dotActive : ''
+						}`}
 					/>
 				))}
 			</div>

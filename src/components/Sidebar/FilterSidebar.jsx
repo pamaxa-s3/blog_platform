@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import cls from './FilterSidebar.module.css';
 
-const STORAGE_KEY = 'blog_filters';
 const DEBOUNCE_DELAY = 400;
 
-const FilterSidebar = ({ categories, authors, onFilterChange, savedFilters }) => {
+const FilterSidebar = ({ categories, authors, savedFilters, onFilterChange }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedAuthor, setSelectedAuthor] = useState('');
   const [sortBy, setSortBy] = useState('');
@@ -12,69 +11,73 @@ const FilterSidebar = ({ categories, authors, onFilterChange, savedFilters }) =>
 
   const debounceRef = useRef(null);
 
-  /* === INIT FROM URL OR LOCALSTORAGE === */
   useEffect(() => {
-    if (
-      savedFilters.categories.length ||
-      savedFilters.author ||
-      savedFilters.sort
-    ) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setSelectedCategories(savedFilters.categories);
-      setSelectedAuthor(savedFilters.author);
-      setSortBy(savedFilters.sort);
-    } else {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        setSelectedCategories(parsed.categories || []);
-        setSelectedAuthor(parsed.author || '');
-        setSortBy(parsed.sort || '');
-      }
-    }
+    setSelectedCategories(savedFilters.categories);
+    setSelectedAuthor(savedFilters.author);
+    setSortBy(savedFilters.sort);
   }, [savedFilters]);
 
-  /* === DEBOUNCED UPDATE === */
-  useEffect(() => {
+  function triggerChange(next) {
     clearTimeout(debounceRef.current);
 
     debounceRef.current = setTimeout(() => {
-      const filters = {
-        categories: selectedCategories,
+      onFilterChange(next);
+    }, DEBOUNCE_DELAY);
+  }
+
+  function toggleCategory(id) {
+    setSelectedCategories(prev => {
+      const nextCategories = prev.includes(id)
+        ? prev.filter(cid => cid !== id)
+        : [...prev, id];
+
+      triggerChange({
+        categories: nextCategories,
         author: selectedAuthor,
         sort: sortBy
-      };
+      });
 
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(filters));
-      onFilterChange(filters);
-    }, DEBOUNCE_DELAY);
+      return nextCategories;
+    });
+  }
 
-    return () => clearTimeout(debounceRef.current);
-  }, [selectedCategories, selectedAuthor, sortBy]);
+  function handleAuthorChange(value) {
+    setSelectedAuthor(value);
 
-  /* === HANDLERS === */
-  function toggleCategory(id) {
-    setSelectedCategories(prev =>
-      prev.includes(id)
-        ? prev.filter(cid => cid !== id)
-        : [...prev, id]
-    );
+    triggerChange({
+      categories: selectedCategories,
+      author: value,
+      sort: sortBy
+    });
+  }
+
+  function handleSortChange(value) {
+    setSortBy(value);
+
+    triggerChange({
+      categories: selectedCategories,
+      author: selectedAuthor,
+      sort: value
+    });
   }
 
   function resetFilters() {
     setSelectedCategories([]);
     setSelectedAuthor('');
     setSortBy('');
-    localStorage.removeItem(STORAGE_KEY);
-    onFilterChange({ categories: [], author: '', sort: '' });
+
+    onFilterChange({
+      categories: [],
+      author: '',
+      sort: ''
+    });
   }
 
   return (
     <aside className={`${cls.sidebar} ${isOpen ? cls.open : ''}`}>
-      {/* MOBILE TOGGLE */}
       <button
         className={cls.toggleButton}
-        onClick={() => setIsOpen(prev => !prev)}
+        onClick={() => setIsOpen(p => !p)}
       >
         Фільтри
       </button>
@@ -82,7 +85,7 @@ const FilterSidebar = ({ categories, authors, onFilterChange, savedFilters }) =>
       <div className={cls.content}>
         <h2 className={cls.title}>Фільтри</h2>
 
-        {/* CATEGORY */}
+        {/* CATEGORIES */}
         <div className={cls.section}>
           <h3>Категорії</h3>
           <div className={cls.checkboxGroup}>
@@ -104,7 +107,7 @@ const FilterSidebar = ({ categories, authors, onFilterChange, savedFilters }) =>
           <h3>Автор</h3>
           <select
             value={selectedAuthor}
-            onChange={(e) => setSelectedAuthor(e.target.value)}
+            onChange={e => handleAuthorChange(e.target.value)}
           >
             <option value="">Всі автори</option>
             {authors.map(author => (
@@ -120,7 +123,7 @@ const FilterSidebar = ({ categories, authors, onFilterChange, savedFilters }) =>
           <h3>Сортувати</h3>
           <select
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
+            onChange={e => handleSortChange(e.target.value)}
           >
             <option value="">Без сортування</option>
             <option value="date">За датою</option>
@@ -129,7 +132,6 @@ const FilterSidebar = ({ categories, authors, onFilterChange, savedFilters }) =>
           </select>
         </div>
 
-        {/* RESET */}
         <button className={cls.resetButton} onClick={resetFilters}>
           Скинути фільтри
         </button>

@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Suspense, lazy } from "react";
 import LoadingSpinner from '../components/common/LoadingSpinner'
 import ProtectedRoute from './ProtectedRoute';
@@ -18,7 +18,7 @@ const SearchResults = lazy(() => import('../pages/Search/SearchResults'));
 const About = lazy(() => import('../pages/About/About'));
 
 // Authors
-const AuthorProfile = lazy(() => import('../pages/Author/AuthorProfile'));
+const AuthorLayout = lazy(() => import('../pages/Author/AuthorLayout'));
 const AuthorPosts = lazy(() => import('../pages/Author/AuthorPosts'));
 const AuthorAbout = lazy(() => import('../pages/Author/AuthorAbout'));
 
@@ -57,8 +57,8 @@ const AppRouter = () => {
 					<Route path="about" element={<About />} />
 
 					{/* Authors */}
-					<Route path="authors/:id" element={<AuthorProfile />}>
-						<Route index element={<AuthorPosts />} />
+					<Route path="authors/:id" element={<AuthorLayout />}>
+						<Route index element={<Navigate to='posts' replace />} />
 						<Route path="posts" element={<AuthorPosts />} />
 						<Route path="about" element={<AuthorAbout />} />
 					</Route>

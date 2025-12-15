@@ -6,66 +6,48 @@
 	--muted: #8f7a6e;
 }
 
-/* Контейнер */
-.nav {
-	display: flex;
+.wrapper {
+	overflow-x: auto;
+	white-space: nowrap;
+	-webkit-overflow-scrolling: touch;
+	margin-bottom: 16px;
+}
+
+.wrapper::-webkit-scrollbar {
+	display: none;
+}
+
+.breadcrumbs {
+	display: inline-flex;
 	align-items: center;
-	gap: 6px;
-	font-size: 0.95rem;
-	padding: 10px 16px;
-	color: var(--muted);
-	flex-wrap: wrap;
-
-	background: var(--light);
-	border: 1px solid var(--light2);
-	border-radius: 12px;          /* 🔥 заокруглення */
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06); /* легка тінь */
-}
-
-/* Головний лінк (Home) */
-.nav > a {
-	text-decoration: none;
-	font-weight: 600;
-	color: var(--accent);
-	transition: color 0.25s ease;
-}
-
-.nav > a:hover {
-	color: #8c180f;
-}
-
-/* Роздільник + контейнер крихт */
-.nav span {
-	display: flex;
-	align-items: center;
-	gap: 6px;
+	font-size: 14px;
 	color: var(--dark);
+	gap: 4px;
+	padding: 0 8px;
 }
 
-/* Лінки в breadcrumb */
-.nav span a {
+.item {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.separator {
+	color: var(--light2);
+}
+
+.link {
+	color: var(--accent);
 	text-decoration: none;
-	color: var(--muted);
 	font-weight: 500;
-	transition: color 0.25s ease;
+	transition: 0.2s;
 }
 
-.nav span a:hover {
-	color: var(--accent);
+.link:hover {
+	text-decoration: underline;
 }
 
-/* Поточна сторінка */
-.nav span span {
-	font-weight: 600;
-	color: var(--dark);
-}
-
-/* Адаптивність */
-@media (max-width: 600px) {
-	.nav {
-		font-size: 0.85rem;
-		gap: 4px;
-		padding: 8px 14px;
-		border-radius: 10px;
-	}
+.current {
+	color: var(--muted);
+	cursor: default;
 }

@@ -1,0 +1,39 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	border-radius: 16px;
+	overflow: hidden;
+	background: #f3f4f6;
+}
+
+.image {
+	height: 140px;
+	background: #e5e7eb;
+}
+
+.content {
+	padding: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.lineSm,
+.lineMd,
+.lineLg {
+	height: 12px;
+	border-radius: 6px;
+	background: #e5e7eb;
+}
+
+.lineSm {
+	width: 40%;
+}
+
+.lineMd {
+	width: 70%;
+}
+
+.lineLg {
+	width: 100%;
+}

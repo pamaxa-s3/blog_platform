@@ -1,0 +1,75 @@
+.wrapper {
+	padding: 24px;
+}
+
+.header {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.avatar {
+	width: 96px;
+	height: 96px;
+	border-radius: 50%;
+	background: #e5e7eb;
+}
+
+.info {
+	flex: 1;
+}
+
+.lineLg,
+.lineMd {
+	height: 16px;
+	background: #e5e7eb;
+	border-radius: 6px;
+	margin-bottom: 12px;
+}
+
+.lineLg {
+	width: 220px;
+	height: 20px;
+}
+
+.lineMd {
+	width: 320px;
+}
+
+.stats {
+	display: flex;
+	gap: 16px;
+}
+
+.stats div {
+	width: 80px;
+	height: 14px;
+	background: #e5e7eb;
+	border-radius: 6px;
+}
+
+.tabs {
+	display: flex;
+	gap: 12px;
+	margin: 24px 0;
+}
+
+.tabs div {
+	width: 100px;
+	height: 36px;
+	background: #e5e7eb;
+	border-radius: 8px;
+}
+
+.content {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: 20px;
+}
+
+.card {
+	height: 260px;
+	background: #e5e7eb;
+	border-radius: 16px;
+}

@@ -1,41 +1,58 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
+import { authors } from '../../data/mockAuthors';
+import { posts } from '../../data/mockPosts';
 import cls from './Breadcrumbs.module.css';
 
 const Breadcrumbs = () => {
+	const { id } = useParams();
 	const location = useLocation();
 
-	const createBreadcrumbs = () => {
-		const pathNames = location.pathname.split('/').filter(path => path);
+	const author = authors.find(a => a.id === Number(id));
+	const segments = location.pathname.split('/').filter(Boolean);
 
-		return pathNames.map((pathName, index) => {
-			const routeTo = `/${pathNames.slice(0, index + 1).join('/')}`;
-			const isLast = index === pathNames.length - 1;
+	const getSegmentName = (segment, index) => {
+		if (segment === 'authors') return 'Authors';
 
-			return {
-				name: pathName.charAt(0).toUpperCase() + pathName.slice(1),
-				path: routeTo,
-				isLast
-			};
-		});
+		// author id → name (тільки другий сегмент)
+		if (index === 1 && segment === id && author) return author.name;
+
+		if (segment === 'posts') return 'Статті';
+		if (segment === 'about') return 'Про автора';
+
+		// post id → title
+		const post = posts.find(p => p.id === Number(segment));
+		if (post) return post.title;
+
+		return segment;
 	};
 
-	const breadcrumbs = createBreadcrumbs();
-
 	return (
-		<nav className={cls.nav}>
-			<Link to="/">Головна</Link>
-			{breadcrumbs.map((breadcrumb, index) => {
-				return (
-					<span key={index}>
-						{'/'}
-						{breadcrumb.isLast ? (
-							<span>{breadcrumb.name}</span>
-						) : (
-							<Link to={breadcrumb.path}>{breadcrumb.name}</Link>
-						)}
-					</span>
-				);
-			})}
+		<nav className={cls.wrapper}>
+			<div className={cls.breadcrumbs}>
+				{/* Головна */}
+				<Link to="/" className={cls.link}>Головна</Link>
+
+				{segments.map((segment, index) => {
+					const path = '/' + segments.slice(0, index + 1).join('/');
+					const isLast = index === segments.length - 1;
+
+					return (
+						<span key={index} className={cls.item}>
+							<span className={cls.separator}>/</span>
+
+							{isLast ? (
+								<span className={cls.current}>
+									{getSegmentName(segment, index)}
+								</span>
+							) : (
+								<Link to={path} className={cls.link}>
+									{getSegmentName(segment, index)}
+								</Link>
+							)}
+						</span>
+					);
+				})}
+			</div>
 		</nav>
 	);
 };

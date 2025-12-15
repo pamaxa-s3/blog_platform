@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import cls from './Navigation.module.css';
+import { useLocation } from 'react-router-dom';
 
 const Navigation = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
+	const { search } = useLocation();
 
 	const toggleMenu = () => setMenuOpen(!menuOpen);
 
@@ -18,7 +20,7 @@ const Navigation = () => {
 
 			<div className={`${cls.nav_links} ${menuOpen ? cls.open : ''}`}>
 				<NavLink
-					to="/"
+					to={`/${search}`}
 					className={({ isActive }) => (isActive ? cls.active : '')}
 				>
 					Home
