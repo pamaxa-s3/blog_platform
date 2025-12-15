@@ -1,26 +1,25 @@
 .authorCard {
 	display: flex;
-	gap: 20px;
-	padding: 20px;
-	border: 1px solid #e0dbd8;
-	border-radius: 14px;
-	background: #faf5f1;
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	gap: 16px;
+	padding: 16px;
+	background: #fff;
+	border: 1px solid #e3e6ec;
+	border-radius: 12px;
+	transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .authorCard:hover {
-	transform: translateY(-3px);
-	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+	transform: translateY(-2px);
 }
 
+/* Avatar */
 .imageWrapper {
-	display: block;
-	min-width: 120px;
-	max-width: 120px;
-	height: 120px;
-	overflow: hidden;
+	flex-shrink: 0;
+	width: 96px;
+	height: 96px;
 	border-radius: 50%;
-	border: 3px solid #a41f13;
+	overflow: hidden;
 }
 
 .imageWrapper img {
@@ -29,18 +28,18 @@
 	object-fit: cover;
 }
 
+/* Content */
 .authorContent {
-	flex: 1;
 	display: flex;
 	flex-direction: column;
 	gap: 6px;
-	color: #292f36;
+	flex-grow: 1;
 }
 
 .authorTitle {
-	font-size: 20px;
-	font-weight: 700;
-	color: #292f36;
+	font-size: 18px;
+	font-weight: 600;
+	color: #222;
 	text-decoration: none;
 }
 
@@ -49,41 +48,62 @@
 }
 
 .authorSlug {
-	font-size: 14px;
-	color: #8f7a6e;
+	font-size: 13px;
+	color: #888;
 }
 
 .authorEmail {
-	font-size: 14px;
-	color: #8f7a6e;
+	font-size: 13px;
+	color: #666;
 }
 
 .authorBio {
-	margin-top: 8px;
+	font-size: 14px;
+	color: #444;
+	margin-top: 6px;
 	line-height: 1.4;
-	color: #292f36;
 }
 
+/* Social */
 .social {
-	margin-top: 10px;
 	display: flex;
-	gap: 14px;
+	gap: 12px;
+	margin-top: 8px;
 }
 
 .social a {
+	font-size: 13px;
 	color: #a41f13;
 	text-decoration: none;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .social a:hover {
 	text-decoration: underline;
 }
 
+/* Stats */
 .authorStatistics {
-	margin-top: 16px;
 	display: flex;
-	gap: 20px;
-	font-size: 14px;
-	color: #292f36;
+	gap: 14px;
+	margin-top: 10px;
+	font-size: 13px;
+	color: #555;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+	.authorCard {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	.authorStatistics {
+		justify-content: center;
+	}
+
+	.social {
+		justify-content: center;
+	}
 }

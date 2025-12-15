@@ -10,21 +10,36 @@ const Breadcrumbs = () => {
 	const author = authors.find(a => a.id === Number(id));
 	const segments = location.pathname.split('/').filter(Boolean);
 
-	const getSegmentName = (segment, index) => {
+	const getSegmentName = (segment, index, segments) => {
+		const section = segments[0];
+
+		// Sections
 		if (segment === 'authors') return 'Authors';
-
-		// author id → name (тільки другий сегмент)
-		if (index === 1 && segment === id && author) return author.name;
-
 		if (segment === 'posts') return 'Статті';
 		if (segment === 'about') return 'Про автора';
 
-		// post id → title
-		const post = posts.find(p => p.id === Number(segment));
-		if (post) return post.title;
+		// AUTHORS SECTION
+		if (section === 'authors') {
+			// /authors/:id
+			if (index === 1 && author) {
+				return author.name;
+			}
+
+			// /authors/:id/posts/:postId
+			const post = posts.find(p => p.id === Number(segment));
+			if (post) return post.title;
+		}
+
+		// POSTS SECTION
+		if (section === 'posts') {
+			// /posts/:id
+			const post = posts.find(p => p.id === Number(segment));
+			if (post) return post.title;
+		}
 
 		return segment;
 	};
+
 
 	return (
 		<nav className={cls.wrapper}>
@@ -42,16 +57,17 @@ const Breadcrumbs = () => {
 
 							{isLast ? (
 								<span className={cls.current}>
-									{getSegmentName(segment, index)}
+									{getSegmentName(segment, index, segments)}
 								</span>
 							) : (
 								<Link to={path} className={cls.link}>
-									{getSegmentName(segment, index)}
+									{getSegmentName(segment, index, segments)}
 								</Link>
 							)}
 						</span>
 					);
 				})}
+
 			</div>
 		</nav>
 	);

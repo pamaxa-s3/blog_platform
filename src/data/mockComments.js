@@ -17,6 +17,24 @@ export const comments = [
 		createdAt: "2024-01-16T15:00:00Z",
 		parentId: 1
 	},
+	{
+		id: 111,
+		postId: 1,
+		authorName: "Марія Петренко",
+		authorAvatar: "https://i.pravatar.cc/50?img=5",
+		content: "Дуже корисна стаття! Дякую за пояснення.",
+		createdAt: "2024-01-16T14:30:00Z",
+		parentId: null
+	},
+	{
+		id: 2222,
+		postId: 1,
+		authorName: "Іван Шевченко",
+		authorAvatar: "https://i.pravatar.cc/50?img=12",
+		content: "Згоден! Особливо сподобалась частина про nested routes.",
+		createdAt: "2024-01-16T15:00:00Z",
+		parentId: 1
+	},
 
 	// ---- ДОДАНІ КОМЕНТАРІ ----
 
@@ -27,7 +45,7 @@ export const comments = [
 		authorAvatar: "https://i.pravatar.cc/50?img=7",
 		content: "Дуже круте пояснення про хуки! Все по поличках.",
 		createdAt: "2024-02-01T10:12:00Z",
-		parentId: null
+		parentId: 5
 	},
 	{
 		id: 4,
@@ -46,7 +64,7 @@ export const comments = [
 		authorAvatar: "https://i.pravatar.cc/50?img=9",
 		content: "Context API — мастхев для глобального стейту.",
 		createdAt: "2024-02-10T09:00:00Z",
-		parentId: null
+		parentId: 5
 	},
 	{
 		id: 6,
@@ -65,7 +83,7 @@ export const comments = [
 		authorAvatar: "https://i.pravatar.cc/50?img=3",
 		content: "TypeScript реально спрощує життя.",
 		createdAt: "2024-02-15T11:10:00Z",
-		parentId: null
+		parentId: 23
 	},
 
 	{
@@ -85,7 +103,17 @@ export const comments = [
 		authorAvatar: "https://i.pravatar.cc/50?img=11",
 		content: "Адаптивний UI — must have у 2024.",
 		createdAt: "2024-02-20T14:22:00Z",
-		parentId: null
+		parentId: 7
+	},
+
+	{
+		id: 9123,
+		postId: 5,
+		authorName: "Тарас Мельничук",
+		authorAvatar: "https://i.pravatar.cc/50?img=11",
+		content: "Адаптивний UI — must have у 2024.",
+		createdAt: "2024-02-20T14:22:00Z",
+		parentId: 7
 	},
 
 	{

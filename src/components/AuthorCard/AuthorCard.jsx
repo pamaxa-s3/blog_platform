@@ -32,9 +32,21 @@ const AuthorCard = ({ author }) => {
 				<p className={cls.authorBio}>{bio}</p>
 
 				<div className={cls.social}>
-					{twitter && <a href={twitter}>Twitter</a>}
-					{github && <a href={github}>GitHub</a>}
-					{linkedin && <a href={linkedin}>LinkedIn</a>}
+					{twitter && (
+						<a href={twitter} target="_blank" rel="noopener noreferrer">
+							Twitter
+						</a>
+					)}
+					{github && (
+						<a href={github} target="_blank" rel="noopener noreferrer">
+							GitHub
+						</a>
+					)}
+					{linkedin && (
+						<a href={linkedin} target="_blank" rel="noopener noreferrer">
+							LinkedIn
+						</a>
+					)}
 				</div>
 
 				<div className={cls.authorStatistics}>

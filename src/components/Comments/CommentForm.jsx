@@ -1,54 +1,38 @@
 import { useId, useState } from 'react';
 import cls from './Comments.module.css';
 
-const CommentForm = () => {
+const CommentForm = ({ onSubmit, placeholder = 'Напишіть коментар...' }) => {
 	const [text, setText] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 	const textareaId = useId();
 
-	function handleSubmit(e) {
+	const handleSubmit = e => {
 		e.preventDefault();
 		if (!text.trim()) return;
 
 		setIsLoading(true);
 
-		// Імітація API-запиту
 		setTimeout(() => {
-			console.log('Comment submitted:', text);
+			onSubmit(text);
 			setText('');
 			setIsLoading(false);
-		}, 1200);
-	}
-
-	const handleChange = (e) => {
-		e.target.style.height = 'auto';
-		e.target.style.height = `${e.target.scrollHeight}px`;
-		setText(e.target.value);
+		}, 600);
 	};
-
-	const isDisabled = !text.trim() || isLoading;
 
 	return (
 		<div className={cls.createComment}>
 			<form onSubmit={handleSubmit}>
-				<label htmlFor={textareaId}>Прокоментувати</label>
-
 				<textarea
 					id={textareaId}
 					value={text}
-					onChange={handleChange}
+					onChange={e => setText(e.target.value)}
 					maxLength={200}
-					placeholder="Напишіть коментар..."
+					placeholder={placeholder}
 				/>
 
 				<div className={cls.formFooter}>
-					<p className={cls.wordCount}>{text.length} / 200</p>
-
-					<button
-						type="submit"
-						className={cls.submitButton}
-						disabled={isDisabled}
-					>
+					<p>{text.length} / 200</p>
+					<button disabled={!text.trim() || isLoading}>
 						{isLoading ? 'Надсилання…' : 'Надіслати'}
 					</button>
 				</div>

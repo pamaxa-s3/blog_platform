@@ -1,0 +1,70 @@
+.footer {
+	margin-top: auto; /* ключове для sticky footer */
+	padding: 20px 0;
+	border-top: 1px solid #e0dbd8;
+	background: #faf5f1;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 16px;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+}
+
+.text {
+	font-size: 14px;
+	color: #8f7a6e;
+}
+
+.links {
+	display: flex;
+	gap: 20px;
+}
+
+.links a {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+
+	font-size: 14px;
+	font-weight: 500;
+	color: #a41f13;
+	text-decoration: none;
+
+	transition: color 0.25s ease;
+}
+
+.links a:hover {
+	text-decoration: underline;
+	color: #7f150d;
+}
+
+.icon {
+	width: 18px;
+	height: 18px;
+	fill: currentColor;
+
+	transition:
+		transform 0.25s ease,
+		opacity 0.25s ease;
+}
+
+
+.links a:hover .icon {
+	transform: translateY(-2px) scale(1.1);
+	opacity: 0.85;
+}
+
+
+/* Mobile */
+@media (max-width: 600px) {
+	.container {
+		flex-direction: column;
+		text-align: center;
+	}
+}

@@ -1,43 +1,18 @@
-:root {
-	--accent: #a41f13;
-	--light: #faf5f1;
-	--dark: #292f36;
-	--muted: #8f7a6e;
-}
-
-/* Сітка постів */
 .authorList {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-	gap: 24px;
-	padding: 20px 0;
+	grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+	gap: 20px;
 }
 
-/* Текст коли немає постів */
 .empty {
 	text-align: center;
-	font-size: 1.2rem;
-	color: var(--muted);
+	font-size: 16px;
+	color: #777;
 	padding: 40px 0;
-	background: var(--light);
-	border: 1px solid #e3ddd9;
-	border-radius: 12px;
-	max-width: 500px;
-	margin: 30px auto;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Адаптивність */
-@media (max-width: 768px) {
-	.authorList {
-		gap: 18px;
-		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-	}
-}
-
-@media (max-width: 480px) {
+@media (max-width: 640px) {
 	.authorList {
 		grid-template-columns: 1fr;
-		gap: 16px;
 	}
 }

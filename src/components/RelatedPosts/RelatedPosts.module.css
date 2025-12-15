@@ -15,6 +15,7 @@
 	scroll-behavior: smooth;
 	flex: 1;
 	padding-bottom: 8px;
+	justify-content: center;
 }
 
 .cards::-webkit-scrollbar {
