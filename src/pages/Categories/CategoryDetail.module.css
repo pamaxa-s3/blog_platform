@@ -1,0 +1,55 @@
+.category {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #111;
+}
+
+.header p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.count {
+  font-size: 14px;
+  color: #777;
+}
+
+.postsGrid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+/* Message when no posts */
+.postsGrid p {
+  grid-column: 1/-1;
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Adaptive */
+@media (max-width: 768px) {
+  .postsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .postsGrid {
+    grid-template-columns: 1fr;
+  }
+}

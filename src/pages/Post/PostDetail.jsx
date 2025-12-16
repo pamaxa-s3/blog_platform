@@ -72,7 +72,7 @@ const PostDetail = () => {
 					{category && (
 						<span>
 							Категорія:{' '}
-							<Link to={`/categories/${category.id}`}>
+							<Link to={`/categories/${category.slug}`}>
 								{category.name}
 							</Link>
 						</span>

@@ -18,7 +18,7 @@ const PostCard = ({
 }) => {
 	const author = authors.find(a => a.id === authorId);
 	const category = categories.find(c => c.id === categoryId);
-	const dateCreateAt = new Date(createdAt).toLocaleString("uk-UA");
+	const dateCreateAt = new Date(createdAt).toLocaleString('uk-UA');
 
 	return (
 		<div className={cls.postCard}>
@@ -36,13 +36,19 @@ const PostCard = ({
 				<div className={cls.meta}>
 					{author && (
 						<span>
-							Автор: <Link to={`/authors/${authorId}`}>{author.name}</Link>
+							Автор:{' '}
+							<Link to={`/authors/${authorId}`}>
+								{author.name}
+							</Link>
 						</span>
 					)}
 
 					{category && (
 						<span>
-							Категорія: <Link to={`/categories/${categoryId}`}>{category.name}</Link>
+							Категорія:{' '}
+							<Link to={`/categories/${category.slug}`}>
+								{category.name}
+							</Link>
 						</span>
 					)}
 				</div>
