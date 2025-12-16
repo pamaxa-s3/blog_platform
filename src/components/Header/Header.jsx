@@ -13,10 +13,6 @@ const Header = () => {
 	const { user, isAuthenticated, logout } = useAuth();
 	const navigate = useNavigate();
 
-	const handleOnChangeSearch = e => {
-		setSearchValue(e.target.value);
-	};
-
 	const handleLogin = () => {
 		navigate('/login');
 	};
@@ -51,9 +47,10 @@ const Header = () => {
 
 				<div className={cls.searchContainer}>
 					<SearchBar
-						placeholder="Search..."
+						placeholder="Пошук…"
 						value={searchValue}
-						onChange={handleOnChangeSearch}
+						onChange={e => setSearchValue(e.target.value)}
+						onSubmit={() => setSearchValue('')}
 					/>
 				</div>
 

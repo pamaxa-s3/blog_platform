@@ -6,7 +6,7 @@ export const categories = [
 		description: "Статті про React та його екосистему",
 		icon: "⚛️",
 		postsCount: 45,
-		color: "#61dafb"
+		color: "#bfd6d7",
 	},
 
 	{

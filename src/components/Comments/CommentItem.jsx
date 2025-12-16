@@ -13,6 +13,7 @@ const CommentItem = ({ comment, allComments, level = 0, onDelete, onEdit }) => {
 	// 🔄 Скидання тексту при відкритті edit-mode або cancel
 	useEffect(() => {
 		if (isEditing) {
+			// eslint-disable-next-line react-hooks/set-state-in-effect
 			setText(comment.content);
 		}
 	}, [isEditing, comment.content]);

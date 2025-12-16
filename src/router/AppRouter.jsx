@@ -14,7 +14,7 @@ const DashboardLayout = lazy(() => import('../layouts/DashboardLayout'));
 const Home = lazy(() => import('../pages/Home/Home'));
 const Authors = lazy(() => import('../pages/Authors/Authors'));
 const PostDetail = lazy(() => import('../pages/Post/PostDetail'));
-const SearchResults = lazy(() => import('../pages/Search/SearchResults'));
+const SearchPage = lazy(() => import('../pages/Search/SearchPage'));
 const About = lazy(() => import('../pages/About/About'));
 
 // Authors
@@ -52,8 +52,9 @@ const AppRouter = () => {
 				<Route path="/" element={<MainLayout />}>
 					<Route index element={<Home />} />
 					<Route path="authors" element={<Authors />} />
+					<Route path="posts" element={<Home />} />
 					<Route path="posts/:id" element={<PostDetail />} />
-					<Route path="search" element={<SearchResults />} />
+					<Route path="search" element={<SearchPage />} />
 					<Route path="about" element={<About />} />
 
 					{/* Authors */}

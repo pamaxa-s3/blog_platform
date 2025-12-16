@@ -1,4 +1,4 @@
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams, useNavigate } from 'react-router-dom';
 import { authors } from '../../data/mockAuthors';
 import { posts } from '../../data/mockPosts';
 import cls from './Breadcrumbs.module.css';
@@ -6,45 +6,46 @@ import cls from './Breadcrumbs.module.css';
 const Breadcrumbs = () => {
 	const { id } = useParams();
 	const location = useLocation();
+	const navigate = useNavigate();
 
-	const author = authors.find(a => a.id === Number(id));
 	const segments = location.pathname.split('/').filter(Boolean);
 
-	const getSegmentName = (segment, index, segments) => {
-		const section = segments[0];
+	const handleComeBack = () => {
+		if (window.history.length > 1) {
+			navigate(-1);
+		} else {
+			navigate('/');
+		}
+	};
 
-		// Sections
+	const getSegmentName = (segment, index) => {
+		// Статичні сторінки
 		if (segment === 'authors') return 'Authors';
 		if (segment === 'posts') return 'Статті';
 		if (segment === 'about') return 'Про автора';
 
-		// AUTHORS SECTION
-		if (section === 'authors') {
-			// /authors/:id
-			if (index === 1 && author) {
-				return author.name;
+		const numericId = Number(segment);
+		if (!isNaN(numericId)) {
+			// Якщо попередній сегмент authors → це автор
+			if (segments[index - 1] === 'authors') {
+				const author = authors.find(a => a.id === numericId);
+				return author ? author.name : segment;
 			}
 
-			// /authors/:id/posts/:postId
-			const post = posts.find(p => p.id === Number(segment));
-			if (post) return post.title;
+			// Якщо попередній сегмент posts → це пост
+			if (segments[index - 1] === 'posts' || (segments[index - 2] === 'authors' && segments[index - 1] === id)) {
+				const post = posts.find(p => p.id === numericId);
+				return post ? post.title : segment;
+			}
 		}
 
-		// POSTS SECTION
-		if (section === 'posts') {
-			// /posts/:id
-			const post = posts.find(p => p.id === Number(segment));
-			if (post) return post.title;
-		}
-
+		// fallback
 		return segment;
 	};
-
 
 	return (
 		<nav className={cls.wrapper}>
 			<div className={cls.breadcrumbs}>
-				{/* Головна */}
 				<Link to="/" className={cls.link}>Головна</Link>
 
 				{segments.map((segment, index) => {
@@ -54,21 +55,17 @@ const Breadcrumbs = () => {
 					return (
 						<span key={index} className={cls.item}>
 							<span className={cls.separator}>/</span>
-
 							{isLast ? (
-								<span className={cls.current}>
-									{getSegmentName(segment, index, segments)}
-								</span>
+								<span className={cls.current}>{getSegmentName(segment, index)}</span>
 							) : (
-								<Link to={path} className={cls.link}>
-									{getSegmentName(segment, index, segments)}
-								</Link>
+								<Link to={path} className={cls.link}>{getSegmentName(segment, index)}</Link>
 							)}
 						</span>
 					);
 				})}
-
 			</div>
+
+			<button onClick={handleComeBack}>⬅️ Назад</button>
 		</nav>
 	);
 };

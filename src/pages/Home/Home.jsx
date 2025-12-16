@@ -33,6 +33,7 @@ const Home = () => {
         : 1
     };
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setFilters(prev =>
       JSON.stringify(prev) === JSON.stringify(nextFilters)
         ? prev
