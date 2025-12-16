@@ -1,94 +1,98 @@
-import { useState } from 'react';
-import CommentForm from './CommentForm';
+import { useState, useEffect } from 'react';
+import ConfirmModal from '../common/ConfirmModal';
 import cls from './Comments.module.css';
 
-const CommentItem = ({ comment, onReply, onEdit, onDelete }) => {
-	const [replyOpen, setReplyOpen] = useState(false);
-	const [editOpen, setEditOpen] = useState(false);
-	const [editText, setEditText] = useState(comment.content);
+const CommentItem = ({ comment, allComments, level = 0, onDelete, onEdit }) => {
+	const [isEditing, setIsEditing] = useState(false);
+	const [text, setText] = useState(comment.content);
+	const [showConfirm, setShowConfirm] = useState(false);
 
-	const date = new Date(comment.createdAt).toLocaleString('uk-UA');
-	const isDeleted = comment.isDeleted;
+	// Відповіді до коментаря
+	const replies = allComments.filter(c => c.parentId === comment.id);
+
+	// 🔄 Скидання тексту при відкритті edit-mode або cancel
+	useEffect(() => {
+		if (isEditing) {
+			setText(comment.content);
+		}
+	}, [isEditing, comment.content]);
+
+	const handleSave = () => {
+		if (!text.trim()) return;
+		onEdit(comment.id, text);
+		setIsEditing(false);
+	};
+
+	const handleCancel = () => {
+		setIsEditing(false);
+		setText(comment.content); // ⬅️ скидання
+	};
+
+	const handleDeleteConfirm = () => {
+		onDelete(comment.id);
+		setShowConfirm(false);
+	};
 
 	return (
-		<div className={cls.comment}>
-			{/* Автор та аватар */}
-			<div className={cls.authorInfo}>
-				<div className={cls.avatar}>
-					<img src={comment.authorAvatar} alt={comment.authorName} />
-				</div>
-				<div className={cls.name}>{comment.authorName}</div>
-			</div>
+		<>
+			<div className={cls.comment} style={{ marginLeft: level * 20 }}>
+				<strong>{comment.authorName}</strong>
 
-			{/* Контент */}
-			{editOpen ? (
-				<>
+				{isEditing ? (
 					<textarea
+						value={text}
+						onChange={e => setText(e.target.value)}
 						className={cls.editTextarea}
-						value={editText}
-						onChange={(e) => setEditText(e.target.value)}
 					/>
-					<div className={cls.actions}>
-						<button
-							onClick={() => {
-								onEdit(comment.id, editText);
-								setEditOpen(false);
-							}}
-						>
-							Зберегти
-						</button>
-						<button onClick={() => setEditOpen(false)}>Скасувати</button>
-					</div>
-				</>
-			) : (
-				<p className={isDeleted ? cls.deleted : cls.content}>
-					{comment.content}
-					{comment.isEdited && !isDeleted && (
-						<span className={cls.edited}>(ред.)</span>
-					)}
-				</p>
-			)}
+				) : (
+					<p>{comment.content}</p>
+				)}
 
-			{/* Дата */}
-			<span className={cls.dateCreated}>{date}</span>
-
-			{/* Дії */}
-			{!isDeleted && (
 				<div className={cls.actions}>
-					<button onClick={() => setReplyOpen((p) => !p)}>Відповісти</button>
-					<button onClick={() => setEditOpen(true)}>Редагувати</button>
-					<button className={cls.delete} onClick={() => onDelete(comment.id)}>
+					{isEditing ? (
+						<>
+							<button onClick={handleCancel}>Скасувати</button>
+							<button onClick={handleSave}>Зберегти</button>
+						</>
+					) : (
+						<button onClick={() => setIsEditing(true)}>Редагувати</button>
+					)}
+
+					<button
+						className={cls.delete}
+						onClick={() => setShowConfirm(true)}
+					>
 						Видалити
 					</button>
 				</div>
-			)}
 
-			{/* Форма відповіді */}
-			{replyOpen && (
-				<CommentForm
-					placeholder="Ваша відповідь..."
-					onSubmit={(text) => {
-						onReply(text, comment.id);
-						setReplyOpen(false);
-					}}
+				{/* Вкладені коментарі */}
+				{replies.length > 0 && (
+					<div className={cls.replies}>
+						{replies.map(reply => (
+							<CommentItem
+								key={reply.id}
+								comment={reply}
+								allComments={allComments}
+								level={level + 1}
+								onDelete={onDelete}
+								onEdit={onEdit}
+							/>
+						))}
+					</div>
+				)}
+			</div>
+
+			{/* Confirm modal для видалення */}
+			{showConfirm && (
+				<ConfirmModal
+					title="Видалити коментар?"
+					message="Коментар і всі відповіді буде видалено без можливості відновлення."
+					onConfirm={handleDeleteConfirm}
+					onCancel={() => setShowConfirm(false)}
 				/>
 			)}
-
-			{/* Відповіді */}
-			{comment.replies?.length > 0 && (
-				<div className={cls.replies}>
-					{comment.replies.map((reply) => (
-						<CommentItem
-							key={reply.id}
-							comment={reply}
-							onReply={onReply}
-							onEdit={onEdit}
-							onDelete={onDelete}
-						/>
-					))}
-				</div>
-			)}
-		</div>
+		</>
 	);
 };
 
