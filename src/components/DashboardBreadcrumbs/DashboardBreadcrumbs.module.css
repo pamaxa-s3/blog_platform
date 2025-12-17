@@ -1,0 +1,52 @@
+.wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.breadcrumbs {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 14px;
+}
+
+.item {
+	display: flex;
+	align-items: center;
+}
+
+.separator {
+	margin: 0 4px;
+	color: var(--light2);
+}
+
+.link {
+	color: var(--accent);
+	text-decoration: none;
+	font-weight: 500;
+}
+
+.link:hover {
+	text-decoration: underline;
+}
+
+.current {
+	color: var(--muted);
+	font-weight: 500;
+}
+
+.backButton {
+	background: none;
+	border: none;
+	color: var(--accent);
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	padding: 4px 8px;
+}
+
+.backButton:hover {
+	text-decoration: underline;
+}

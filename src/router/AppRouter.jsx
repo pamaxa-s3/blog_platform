@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Suspense, lazy } from "react";
-import LoadingSpinner from '../components/common/LoadingSpinner'
+import { Suspense, lazy } from 'react';
+import LoadingSpinner from '../components/common/LoadingSpinner';
 import ProtectedRoute from './ProtectedRoute';
 import ErrorBoundary from '../pages/ErrorBoundary/ErrorBoundary';
 import PublicRoute from './PublicRoute';
@@ -30,24 +30,30 @@ const CategoryDetail = lazy(() => import('../pages/Categories/CategoryDetail'));
 const Login = lazy(() => import('../pages/Auth/Login'));
 const Register = lazy(() => import('../pages/Auth/Register'));
 
-
 // Posts
 const PostCreate = lazy(() => import('../pages/Post/PostCreate'));
 const PostEdit = lazy(() => import('../pages/Post/PostEdit'));
 
 // Dashboard
-const DashboardHome = lazy(() => import('../pages/Dashboard/DashboardHome'));
-const MyPosts = lazy(() => import('../pages/Dashboard/MyPosts'));
-const Settings = lazy(() => import('../pages/Dashboard/Settings'));
+const DashboardHome = lazy(() =>
+	import('../pages/Dashboard/DashboardHome/DashboardHome')
+);
+const MyPosts = lazy(() => import('../pages/Dashboard/MyPosts/MyPosts'));
+const Settings = lazy(() => import('../pages/Dashboard/Settings/Settings'));
 
 // Not found
 const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 const AppRouter = () => {
 	return (
-		<Suspense fallback={<div style={{ padding: 40 }}><LoadingSpinner /></div>}>
+		<Suspense
+			fallback={
+				<div style={{ padding: 40 }}>
+					<LoadingSpinner />
+				</div>
+			}
+		>
 			<Routes errorElement={<ErrorBoundary />}>
-
 				{/* Public routes */}
 				<Route path="/" element={<MainLayout />}>
 					<Route index element={<Home />} />
@@ -59,7 +65,10 @@ const AppRouter = () => {
 
 					{/* Authors */}
 					<Route path="authors/:id" element={<AuthorLayout />}>
-						<Route index element={<Navigate to='posts' replace />} />
+						<Route
+							index
+							element={<Navigate to="posts" replace />}
+						/>
 						<Route path="posts" element={<AuthorPosts />} />
 						<Route path="about" element={<AuthorAbout />} />
 					</Route>
@@ -82,7 +91,6 @@ const AppRouter = () => {
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
 				</Route>
-
 
 				{/* Create & Edit Posts */}
 				<Route
@@ -119,7 +127,6 @@ const AppRouter = () => {
 
 				{/* Fallback */}
 				<Route path="*" element={<NotFound />} />
-
 			</Routes>
 		</Suspense>
 	);

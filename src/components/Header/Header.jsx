@@ -8,10 +8,10 @@ import cls from './Header.module.css';
 const Header = () => {
 	const [searchValue, setSearchValue] = useState('');
 	const [menuOpen, setMenuOpen] = useState(false);
-	const { search } = useLocation();
 
-	const { user, isAuthenticated, logout } = useAuth();
+	const location = useLocation();
 	const navigate = useNavigate();
+	const { user, isAuthenticated, logout } = useAuth();
 
 	const handleLogin = () => {
 		navigate('/login');
@@ -19,12 +19,13 @@ const Header = () => {
 
 	const handleLogout = () => {
 		logout();
-		navigate(`/${search}`, { replace: true });
+		navigate('/', { replace: true });
 	};
 
 	return (
 		<header className={cls.header}>
 			<div className={cls.container}>
+				{/* LEFT */}
 				<div className={cls.headerLeft}>
 					<button
 						className={`${cls.burger} ${menuOpen ? cls.open : ''}`}
@@ -35,16 +36,17 @@ const Header = () => {
 						<span />
 					</button>
 
-					<Link to={`/${search}`} className={cls.headerLogo}>
+					<Link to="/" className={cls.headerLogo}>
 						Blog Platform
 					</Link>
 				</div>
 
-				{/* ✅ DESKTOP NAV */}
+				{/* DESKTOP NAV */}
 				<div className={cls.desktopNav}>
 					<Navigation />
 				</div>
 
+				{/* SEARCH */}
 				<div className={cls.searchContainer}>
 					<SearchBar
 						placeholder="Пошук…"
@@ -54,6 +56,7 @@ const Header = () => {
 					/>
 				</div>
 
+				{/* AUTH */}
 				<div className={cls.authBlock}>
 					{!isAuthenticated ? (
 						<button
@@ -71,7 +74,8 @@ const Header = () => {
 							/>
 
 							<div className={cls.dropdownMenu}>
-								<Link to={`/authors/${user.id}`}>Профіль</Link>
+								{/* ✅ ПРАВИЛЬНО */}
+								<Link to="/dashboard">Мій профіль</Link>
 								<Link to="/dashboard/settings">
 									Налаштування
 								</Link>
@@ -86,11 +90,12 @@ const Header = () => {
 						</div>
 					)}
 				</div>
-				{/* ✅ MOBILE MENU */}
+
+				{/* MOBILE MENU */}
 				<nav
 					className={`${cls.mobileMenu} ${menuOpen ? cls.show : ''}`}
 				>
-					<Navigation />
+					<Navigation onNavigate={() => setMenuOpen(false)} />
 				</nav>
 			</div>
 		</header>

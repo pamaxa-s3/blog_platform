@@ -9,7 +9,6 @@ const Breadcrumbs = () => {
 	const navigate = useNavigate();
 
 	const segments = location.pathname.split('/').filter(Boolean);
-
 	const handleComeBack = () => {
 		if (window.history.length > 1) {
 			navigate(-1);
@@ -65,7 +64,7 @@ const Breadcrumbs = () => {
 				})}
 			</div>
 
-			<button onClick={handleComeBack}>⬅️ Назад</button>
+			{segments.length>0? (<button onClick={handleComeBack}>⬅️ Назад</button>):null}
 		</nav>
 	);
 };

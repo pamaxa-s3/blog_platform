@@ -1,11 +1,15 @@
-import React from 'react'
+import { useNavigate } from 'react-router-dom';
+import ArticleForm from '../../components/ArticleForm/ArticleForm';
 
 const PostCreate = () => {
-	return (
-		<div>
-			PostCreate
-		</div>
-	)
-}
+  const navigate = useNavigate();
 
-export default PostCreate
+  const handleCreate = data => {
+    const newPostId = Date.now(); // mock
+    navigate(`/posts/${newPostId}`);
+  };
+
+  return <ArticleForm onSubmit={handleCreate} />;
+};
+
+export default PostCreate;
