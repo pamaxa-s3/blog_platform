@@ -15,7 +15,6 @@ export const posts = [
 		status: "published"
 	},
 
-	// --- Початок автозгенерованих статей ---
 	...Array.from({ length: 25 }).map((_, i) => {
 		const id = i + 2;
 		const titles = [

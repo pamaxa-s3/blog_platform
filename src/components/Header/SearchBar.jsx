@@ -14,7 +14,7 @@ const SearchBar = ({ placeholder, value, onChange, onSubmit }) => {
 		if (!query) return;
 
 		navigate(`/search?q=${encodeURIComponent(query)}`);
-		onSubmit?.(); // 👈 повідомляємо батьківський компонент
+		onSubmit?.();
 	}
 
 	return (

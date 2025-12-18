@@ -43,7 +43,6 @@
 	margin-bottom: 24px;
 }
 
-/* Desktop tabs */
 .tabs {
 	display: flex;
 	gap: 8px;
@@ -69,7 +68,6 @@
 	border-bottom-color: #111827;
 }
 
-/* Mobile select */
 .mobileSelect {
 	display: none;
 	width: 100%;
@@ -81,12 +79,10 @@
 	color: #111827;
 }
 
-/* Content area */
 .content {
 	margin-top: 16px;
 }
 
-/* MOBILE */
 @media (max-width: 640px) {
 	.tabs {
 		display: none;

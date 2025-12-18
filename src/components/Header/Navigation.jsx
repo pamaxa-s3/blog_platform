@@ -11,7 +11,6 @@ const Navigation = () => {
 
 	return (
 		<nav className={cls.nav}>
-			{/* Бургер для мобільних */}
 			<div className={cls.burger} onClick={toggleMenu}>
 				<div className={cls.bar}></div>
 				<div className={cls.bar}></div>
@@ -37,12 +36,7 @@ const Navigation = () => {
 				>
 					Authors
 				</NavLink>
-				<NavLink
-					to="/about"
-					className={({ isActive }) => (isActive ? cls.active : '')}
-				>
-					About
-				</NavLink>
+
 			</div>
 		</nav>
 	);

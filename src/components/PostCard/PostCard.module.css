@@ -6,7 +6,6 @@
 	--muted: #8f7a6e;
 }
 
-/* Карточка */
 .postCard {
 	background: var(--light);
 	border-radius: 16px;
@@ -20,7 +19,6 @@
 	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
-/* Контейнер картинки */
 .cardImage {
 	position: relative;
 	width: 100%;
@@ -40,7 +38,6 @@
 	transform: scale(1.06);
 }
 
-/* Контент */
 .cardContent {
 	min-height: 290px;
 	padding: 18px 22px;
@@ -50,7 +47,6 @@
 	background: var(--light);
 }
 
-/* Заголовок */
 .cardTitle {
 	font-size: 1.35rem;
 	font-weight: 700;
@@ -64,14 +60,12 @@
 	color: var(--accent);
 }
 
-/* Опис */
 .cardExcerpt {
 	font-size: 1rem;
 	color: var(--muted);
 	line-height: 1.5;
 }
 
-/* Лінки автора/категорій */
 .cardContent a {
 	color: var(--accent);
 	font-weight: 600;
@@ -100,13 +94,11 @@
 	text-decoration: underline;
 }
 
-/* Дата */
 .cardDate {
 	font-size: 0.9rem;
 	color: var(--muted);
 }
 
-/* Статистика */
 .cardStatistics {
 	margin-top: auto;
 	display: flex;
@@ -119,7 +111,6 @@
 	font-size: 0.9rem;
 }
 
-/* 📱 Адаптивність */
 @media (max-width: 600px) {
 	.cardImage img {
 		height: 180px;

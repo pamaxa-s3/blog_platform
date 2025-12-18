@@ -33,7 +33,6 @@
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
 
-/* Message when no posts */
 .postsGrid p {
   grid-column: 1/-1;
   text-align: center;
@@ -41,7 +40,6 @@
   color: #555;
 }
 
-/* Adaptive */
 @media (max-width: 768px) {
   .postsGrid {
     grid-template-columns: 1fr 1fr;

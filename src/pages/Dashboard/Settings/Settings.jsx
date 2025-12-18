@@ -2,7 +2,6 @@ import { useState } from 'react';
 import cls from './Settings.module.css';
 
 const Settings = () => {
-  // mock поточного користувача
   const [form, setForm] = useState({
     name: 'John Doe',
     email: 'john@example.com',
@@ -31,7 +30,6 @@ const Settings = () => {
       return;
     }
 
-    // тут пізніше буде API
     console.log('save profile', form);
 
     setIsDirty(false);

@@ -85,7 +85,6 @@ const FilterSidebar = ({ categories, authors, savedFilters, onFilterChange }) =>
       <div className={cls.content}>
         <h2 className={cls.title}>Фільтри</h2>
 
-        {/* CATEGORIES */}
         <div className={cls.section}>
           <h3>Категорії</h3>
           <div className={cls.checkboxGroup}>
@@ -102,7 +101,6 @@ const FilterSidebar = ({ categories, authors, savedFilters, onFilterChange }) =>
           </div>
         </div>
 
-        {/* AUTHOR */}
         <div className={cls.section}>
           <h3>Автор</h3>
           <select
@@ -118,7 +116,6 @@ const FilterSidebar = ({ categories, authors, savedFilters, onFilterChange }) =>
           </select>
         </div>
 
-        {/* SORT */}
         <div className={cls.section}>
           <h3>Сортувати</h3>
           <select

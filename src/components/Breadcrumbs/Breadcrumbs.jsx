@@ -18,27 +18,25 @@ const Breadcrumbs = () => {
 	};
 
 	const getSegmentName = (segment, index) => {
-		// Статичні сторінки
+
 		if (segment === 'authors') return 'Authors';
 		if (segment === 'posts') return 'Статті';
 		if (segment === 'about') return 'Про автора';
 
 		const numericId = Number(segment);
 		if (!isNaN(numericId)) {
-			// Якщо попередній сегмент authors → це автор
+
 			if (segments[index - 1] === 'authors') {
 				const author = authors.find(a => a.id === numericId);
 				return author ? author.name : segment;
 			}
 
-			// Якщо попередній сегмент posts → це пост
 			if (segments[index - 1] === 'posts' || (segments[index - 2] === 'authors' && segments[index - 1] === id)) {
 				const post = posts.find(p => p.id === numericId);
 				return post ? post.title : segment;
 			}
 		}
 
-		// fallback
 		return segment;
 	};
 
@@ -64,7 +62,7 @@ const Breadcrumbs = () => {
 				})}
 			</div>
 
-			{segments.length>0? (<button onClick={handleComeBack}>⬅️ Назад</button>):null}
+			{segments.length > 0 ? (<button onClick={handleComeBack}>⬅️ Назад</button>) : null}
 		</nav>
 	);
 };

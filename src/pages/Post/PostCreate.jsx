@@ -4,7 +4,7 @@ import ArticleForm from '../../components/ArticleForm/ArticleForm';
 const PostCreate = () => {
   const navigate = useNavigate();
 
-  const handleCreate = data => {
+  const handleCreate = () => {
     const newPostId = Date.now(); // mock
     navigate(`/posts/${newPostId}`);
   };

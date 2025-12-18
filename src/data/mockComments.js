@@ -36,8 +36,6 @@ export const comments = [
 		parentId: 1
 	},
 
-	// ---- ДОДАНІ КОМЕНТАРІ ----
-
 	{
 		id: 3,
 		postId: 2,

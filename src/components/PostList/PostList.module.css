@@ -5,7 +5,6 @@
 	--muted: #8f7a6e;
 }
 
-/* Сітка постів */
 .postList {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -13,7 +12,6 @@
 	padding: 20px 0;
 }
 
-/* Текст коли немає постів */
 .empty {
 	text-align: center;
 	font-size: 1.2rem;
@@ -27,7 +25,6 @@
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Адаптивність */
 @media (max-width: 768px) {
 	.postList {
 		gap: 18px;

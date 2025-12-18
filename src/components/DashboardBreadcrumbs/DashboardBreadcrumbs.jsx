@@ -25,7 +25,6 @@ const DashboardBreadcrumbs = () => {
 
 	return (
 		<nav className={cls.wrapper}>
-			{/* LEFT — breadcrumbs */}
 			<div className={cls.breadcrumbs}>
 				{breadcrumbs.map((item, index) => {
 					const isLast = index === breadcrumbs.length - 1;
@@ -47,7 +46,6 @@ const DashboardBreadcrumbs = () => {
 				})}
 			</div>
 
-			{/* RIGHT — back button */}
 			{canGoBack && (
 				<button
 					type="button"

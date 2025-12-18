@@ -10,7 +10,6 @@
   gap: 24px;
 }
 
-/* -------- TITLE -------- */
 .post h3 {
   font-size: 32px;
   font-weight: 800;
@@ -19,7 +18,6 @@
   margin-bottom: 10px;
 }
 
-/* -------- META INFO -------- */
 .meta {
   display: flex;
   flex-wrap: wrap;
@@ -48,7 +46,6 @@
   font-weight: 600;
 }
 
-/* -------- IMAGE -------- */
 .image img {
   width: 100%;
   border-radius: 14px;
@@ -56,7 +53,6 @@
   object-fit: cover;
 }
 
-/* -------- TEXT -------- */
 .text {
   font-size: 17px;
   line-height: 1.7;
@@ -64,7 +60,6 @@
   white-space: pre-line;
 }
 
-/* -------- TAGS -------- */
 .tags {
   display: flex;
   gap: 12px;
@@ -87,11 +82,6 @@
   background: #e2e8f0;
 }
 
-/* ======================================================== */
-/* ====================== ADAPTIVE ======================== */
-/* ======================================================== */
-
-/* Tablets — ≤ 1024px */
 @media (max-width: 1024px) {
   .post {
     padding: 26px;
@@ -106,7 +96,6 @@
   }
 }
 
-/* Mobile — ≤ 768px */
 @media (max-width: 768px) {
   .post {
     padding: 22px;
@@ -135,7 +124,6 @@
   }
 }
 
-/* Mobile small — ≤ 480px */
 @media (max-width: 480px) {
   .post {
     padding: 18px;

@@ -13,17 +13,15 @@ const CommentsList = ({ comments: allComments }) => {
 
 	const [comments, setComments] = useState([]);
 
-	// 🔹 ОДНА активна дія
 	const [activeAction, setActiveAction] = useState(null);
 	// { type: 'reply' | 'edit' | 'add', commentId: number | null }
 
-	/* ================= SYNC POST ================= */
 	useEffect(() => {
+		// eslint-disable-next-line react-hooks/set-state-in-effect
 		setComments(allComments.filter(c => c.postId === postId));
 		setActiveAction(null); // ❗ скидати при зміні поста
 	}, [postId, allComments]);
 
-	/* ================= ADD / REPLY ================= */
 	const handleAdd = (parentId, text) => {
 		const newComment = {
 			id: Date.now(),
@@ -39,7 +37,6 @@ const CommentsList = ({ comments: allComments }) => {
 		setActiveAction(null);
 	};
 
-	/* ================= EDIT ================= */
 	const handleEdit = (id, text) => {
 		setComments(prev =>
 			prev.map(c => (c.id === id ? { ...c, content: text } : c))
@@ -47,7 +44,6 @@ const CommentsList = ({ comments: allComments }) => {
 		setActiveAction(null);
 	};
 
-	/* ================= DELETE ================= */
 	const handleDelete = id => {
 		setComments(prev =>
 			prev.filter(c => c.id !== id && c.parentId !== id)

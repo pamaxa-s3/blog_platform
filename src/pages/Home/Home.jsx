@@ -70,7 +70,6 @@ const Home = () => {
     updateURL(next);
   }
 
-  /* === FILTER + SORT === */
   const filteredPosts = useMemo(() => {
     let result = [...posts];
 

@@ -18,6 +18,7 @@ const AuthorLayout = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		// eslint-disable-next-line react-hooks/set-state-in-effect
 		setLoading(true);
 
 		const timer = setTimeout(() => {
@@ -49,7 +50,6 @@ const AuthorLayout = () => {
 			</header>
 
 			<nav className={cls.nav}>
-				{/* DESKTOP TABS */}
 				<div className={cls.tabs}>
 					<NavLink
 						to="posts"
@@ -70,7 +70,6 @@ const AuthorLayout = () => {
 					</NavLink>
 				</div>
 
-				{/* MOBILE SELECT */}
 				<select
 					className={cls.mobileSelect}
 					value={

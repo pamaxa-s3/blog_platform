@@ -13,7 +13,7 @@
 	transform: translateY(-2px);
 }
 
-/* Avatar */
+
 .imageWrapper {
 	flex-shrink: 0;
 	width: 96px;
@@ -28,7 +28,7 @@
 	object-fit: cover;
 }
 
-/* Content */
+
 .authorContent {
 	display: flex;
 	flex-direction: column;
@@ -64,7 +64,7 @@
 	line-height: 1.4;
 }
 
-/* Social */
+
 .social {
 	display: flex;
 	gap: 12px;
@@ -82,7 +82,7 @@
 	text-decoration: underline;
 }
 
-/* Stats */
+
 .authorStatistics {
 	display: flex;
 	gap: 14px;
@@ -91,7 +91,7 @@
 	color: #555;
 }
 
-/* Mobile */
+
 @media (max-width: 640px) {
 	.authorCard {
 		flex-direction: column;

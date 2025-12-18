@@ -70,7 +70,6 @@
 	font-style: italic;
 }
 
-/* highlight */
 mark {
 	background-color: var(--accent);
 	color: #fff;

@@ -6,7 +6,6 @@ import cls from './MyPosts.module.css';
 const MyPosts = () => {
   const navigate = useNavigate();
 
-  // тимчасово — поточний користувач
   const currentUserId = 1;
 
   const [filter, setFilter] = useState('all');
@@ -29,7 +28,6 @@ const MyPosts = () => {
     const confirmed = window.confirm('Видалити статтю?');
     if (!confirmed) return;
 
-    // тут пізніше буде API
     console.log('delete post', id);
   };
 

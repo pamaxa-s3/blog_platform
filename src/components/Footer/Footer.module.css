@@ -1,5 +1,5 @@
 .footer {
-	margin-top: auto; /* ключове для sticky footer */
+	margin-top: auto;
 	padding: 20px 0;
 	border-top: 1px solid #e0dbd8;
 	background: #faf5f1;
@@ -60,8 +60,6 @@
 	opacity: 0.85;
 }
 
-
-/* Mobile */
 @media (max-width: 600px) {
 	.container {
 		flex-direction: column;

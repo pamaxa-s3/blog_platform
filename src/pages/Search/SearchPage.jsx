@@ -70,7 +70,6 @@ const SearchPage = () => {
 				Результати пошуку: “{queryRaw}”
 			</h2>
 
-			{/* FILTERS */}
 			<div className={cls.filters}>
 				{Object.entries(FILTERS).map(([key, label]) => (
 					<button
@@ -89,7 +88,6 @@ const SearchPage = () => {
 				</p>
 			)}
 
-			{/* POSTS */}
 			{(filter === 'all' || filter === 'posts') &&
 				results.posts.length > 0 && (
 					<div className={cls.block}>
@@ -106,7 +104,6 @@ const SearchPage = () => {
 					</div>
 				)}
 
-			{/* AUTHORS */}
 			{(filter === 'all' || filter === 'authors') &&
 				results.authors.length > 0 && (
 					<div className={cls.block}>
@@ -123,7 +120,6 @@ const SearchPage = () => {
 					</div>
 				)}
 
-			{/* CATEGORIES */}
 			{(filter === 'all' || filter === 'categories') &&
 				results.categories.length > 0 && (
 					<div className={cls.block}>

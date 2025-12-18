@@ -24,6 +24,7 @@ const ArticleForm = ({
 
 	useEffect(() => {
 		if (initialData) {
+			// eslint-disable-next-line react-hooks/set-state-in-effect
 			setForm({
 				title: initialData.title || '',
 				excerpt: initialData.excerpt || '',

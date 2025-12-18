@@ -6,7 +6,6 @@ export const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
 
-	// 🔄 Restore session
 	useEffect(() => {
 		const storedUser = localStorage.getItem('auth:user');
 
@@ -21,13 +20,10 @@ export const AuthProvider = ({ children }) => {
 		setIsLoading(false);
 	}, []);
 
-	// 🔐 Login with email/password
 	const login = async ({ email, password }) => {
 		setIsLoading(true);
 
 		try {
-			// 🔁 replace with real API call
-			// const res = await api.post('/auth/login', { email, password });
 
 			if (email !== 'test@test.com' || password !== '123456') {
 				throw new Error('Invalid credentials');
@@ -49,7 +45,6 @@ export const AuthProvider = ({ children }) => {
 		}
 	};
 
-	// 🚪 Logout
 	const logout = () => {
 		setUser(null);
 		localStorage.removeItem('auth:user');

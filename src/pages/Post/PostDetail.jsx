@@ -16,18 +16,19 @@ const PostDetail = () => {
 
 	const post = posts.find(p => p.id === postId);
 
-	// 🔴 STATE коментарів (ВАЖЛИВО)
+
 	const [comments, setComments] = useState([]);
 
-	// 🔄 перевантаження коментарів при зміні поста
+
 	useEffect(() => {
 		const postComments = allComments.filter(
 			comment => comment.postId === postId
 		);
+		// eslint-disable-next-line react-hooks/set-state-in-effect
 		setComments(postComments);
 	}, [postId]);
 
-	// 🗑 DELETE (коментар + всі відповіді)
+
 	const handleDeleteComment = (commentId) => {
 		setComments(prev =>
 			prev.filter(
@@ -36,7 +37,7 @@ const PostDetail = () => {
 		);
 	};
 
-	// ✏️ EDIT
+
 	const handleEditComment = (commentId, newText) => {
 		setComments(prev =>
 			prev.map(c =>
@@ -58,7 +59,7 @@ const PostDetail = () => {
 			<main>
 				<h3>{post.title}</h3>
 
-				{/* META */}
+
 				<div className={cls.meta}>
 					{author && (
 						<span>
@@ -82,17 +83,17 @@ const PostDetail = () => {
 					<span className={cls.cardViews}>👁 {post.views}</span>
 				</div>
 
-				{/* IMAGE */}
+
 				{post.imageUrl && (
 					<div className={cls.image}>
 						<img src={post.imageUrl} alt={post.title} />
 					</div>
 				)}
 
-				{/* CONTENT */}
+
 				<p className={cls.text}>{post.content}</p>
 
-				{/* TAGS */}
+
 				{post.tags?.length > 0 && (
 					<div className={cls.tags}>
 						{post.tags.map(tag => (
@@ -103,7 +104,7 @@ const PostDetail = () => {
 					</div>
 				)}
 
-				{/* COMMENTS */}
+
 				<div className={cls.comments}>
 					<CommentsList
 						comments={comments}
@@ -112,7 +113,7 @@ const PostDetail = () => {
 					/>
 				</div>
 
-				{/* RELATED */}
+
 				<RelatedPosts
 					currentPost={post}
 					allPosts={posts}

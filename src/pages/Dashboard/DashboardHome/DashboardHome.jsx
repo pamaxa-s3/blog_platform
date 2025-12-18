@@ -2,7 +2,6 @@ import cls from './DashboardHome.module.css';
 import { posts } from '../../../data/mockPosts';
 
 const DashboardHome = () => {
-  // тимчасово — поточний користувач
   const currentUserId = 1;
 
   const myPosts = posts.filter(p => p.authorId === currentUserId);
@@ -13,7 +12,6 @@ const DashboardHome = () => {
     comments: myPosts.reduce((sum, p) => sum + p.commentsCount, 0),
   };
 
-  // mock останніх коментарів
   const latestComments = myPosts
     .flatMap(post =>
       (post.comments || []).map(comment => ({
@@ -28,7 +26,6 @@ const DashboardHome = () => {
     <div className={cls.wrapper}>
       <h1>Головна</h1>
 
-      {/* Статистика */}
       <div className={cls.stats}>
         <div className={cls.card}>
           <span className={cls.label}>Статей</span>
@@ -44,7 +41,6 @@ const DashboardHome = () => {
         </div>
       </div>
 
-      {/* Останні коментарі */}
       <section className={cls.comments}>
         <h2>Останні коментарі</h2>
 

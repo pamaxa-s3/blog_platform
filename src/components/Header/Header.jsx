@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Navigation from './Navigation';
 import SearchBar from './SearchBar';
 import { useAuth } from '../../hooks/useAuth';
@@ -8,24 +8,39 @@ import cls from './Header.module.css';
 const Header = () => {
 	const [searchValue, setSearchValue] = useState('');
 	const [menuOpen, setMenuOpen] = useState(false);
+	const [dropdownOpen, setDropdownOpen] = useState(false);
 
-	const location = useLocation();
+	const dropdownRef = useRef(null);
+
 	const navigate = useNavigate();
 	const { user, isAuthenticated, logout } = useAuth();
 
-	const handleLogin = () => {
-		navigate('/login');
-	};
+	const handleLogin = () => navigate('/login');
 
 	const handleLogout = () => {
 		logout();
+		setDropdownOpen(false);
 		navigate('/', { replace: true });
 	};
+
+	useEffect(() => {
+		const handleClickOutside = e => {
+			if (
+				dropdownRef.current &&
+				!dropdownRef.current.contains(e.target)
+			) {
+				setDropdownOpen(false);
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () =>
+			document.removeEventListener('mousedown', handleClickOutside);
+	}, []);
 
 	return (
 		<header className={cls.header}>
 			<div className={cls.container}>
-				{/* LEFT */}
 				<div className={cls.headerLeft}>
 					<button
 						className={`${cls.burger} ${menuOpen ? cls.open : ''}`}
@@ -41,12 +56,10 @@ const Header = () => {
 					</Link>
 				</div>
 
-				{/* DESKTOP NAV */}
 				<div className={cls.desktopNav}>
 					<Navigation />
 				</div>
 
-				{/* SEARCH */}
 				<div className={cls.searchContainer}>
 					<SearchBar
 						placeholder="Пошук…"
@@ -56,7 +69,6 @@ const Header = () => {
 					/>
 				</div>
 
-				{/* AUTH */}
 				<div className={cls.authBlock}>
 					{!isAuthenticated ? (
 						<button
@@ -66,17 +78,34 @@ const Header = () => {
 							Увійти
 						</button>
 					) : (
-						<div className={cls.userInfo}>
+						<div
+							className={cls.userInfo}
+							ref={dropdownRef}
+						>
 							<img
 								src={user.avatar || 'https://i.pravatar.cc/40'}
 								alt={user.name}
 								className={cls.avatar}
+								onClick={() =>
+									setDropdownOpen(prev => !prev)
+								}
 							/>
 
-							<div className={cls.dropdownMenu}>
-								{/* ✅ ПРАВИЛЬНО */}
-								<Link to="/dashboard">Мій профіль</Link>
-								<Link to="/dashboard/settings">
+							<div
+								className={`${cls.dropdownMenu} ${dropdownOpen ? cls.show : ''
+									}`}
+							>
+								<Link
+									to="/dashboard"
+									onClick={() => setDropdownOpen(false)}
+								>
+									Мій профіль
+								</Link>
+
+								<Link
+									to="/dashboard/settings"
+									onClick={() => setDropdownOpen(false)}
+								>
 									Налаштування
 								</Link>
 
@@ -91,9 +120,9 @@ const Header = () => {
 					)}
 				</div>
 
-				{/* MOBILE MENU */}
 				<nav
-					className={`${cls.mobileMenu} ${menuOpen ? cls.show : ''}`}
+					className={`${cls.mobileMenu} ${menuOpen ? cls.show : ''
+						}`}
 				>
 					<Navigation onNavigate={() => setMenuOpen(false)} />
 				</nav>

@@ -123,6 +123,7 @@
 /* =========================
    DROPDOWN
 ========================= */
+
 .dropdownMenu {
   position: absolute;
   right: 0;
@@ -143,25 +144,14 @@
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.userInfo:hover .dropdownMenu {
+.dropdownMenu a {
+  color: #292f36
+}
+
+.dropdownMenu.show {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
-}
-
-.dropdownMenu a,
-.dropdownMenu button {
-  padding: 8px 10px;
-  font-size: 14px;
-  color: #292f36;
-  border-radius: 8px;
-  text-decoration: none;
-  background: none;
-}
-
-.dropdownMenu a:hover,
-.dropdownMenu button:hover {
-  background: #e0dbd8;
 }
 
 /* =========================
