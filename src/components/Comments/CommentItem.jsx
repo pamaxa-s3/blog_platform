@@ -1,99 +1,122 @@
-import { useState, useEffect } from 'react';
-import ConfirmModal from '../common/ConfirmModal';
-import cls from './Comments.module.css';
+import CommentForm from './CommentForm';
+import cls from './CommentItem.module.css';
+import { useAuth } from '../../hooks/useAuth';
 
-const CommentItem = ({ comment, allComments, level = 0, onDelete, onEdit }) => {
-	const [isEditing, setIsEditing] = useState(false);
-	const [text, setText] = useState(comment.content);
-	const [showConfirm, setShowConfirm] = useState(false);
+const MAX_DEPTH = 3;
 
-	// Відповіді до коментаря
-	const replies = allComments.filter(c => c.parentId === comment.id);
+const CommentItem = ({
+	comment,
+	onReply,
+	onEdit,
+	onDelete,
+	depth = 0,
+	activeAction,
+	setActiveAction
+}) => {
+	const { isAuthenticated, user } = useAuth();
 
-	// 🔄 Скидання тексту при відкритті edit-mode або cancel
-	useEffect(() => {
-		if (isEditing) {
-			// eslint-disable-next-line react-hooks/set-state-in-effect
-			setText(comment.content);
-		}
-	}, [isEditing, comment.content]);
+	const createdAt = new Date(comment.createdAt).toLocaleString('uk-UA');
 
-	const handleSave = () => {
-		if (!text.trim()) return;
-		onEdit(comment.id, text);
-		setIsEditing(false);
-	};
+	const isReplying =
+		activeAction?.type === 'reply' &&
+		activeAction.commentId === comment.id;
 
-	const handleCancel = () => {
-		setIsEditing(false);
-		setText(comment.content); // ⬅️ скидання
-	};
+	const isEditing =
+		activeAction?.type === 'edit' &&
+		activeAction.commentId === comment.id;
 
-	const handleDeleteConfirm = () => {
-		onDelete(comment.id);
-		setShowConfirm(false);
-	};
+	const isOwner = isAuthenticated && user?.name === comment.authorName;
 
 	return (
-		<>
-			<div className={cls.comment} style={{ marginLeft: level * 20 }}>
-				<strong>{comment.authorName}</strong>
+		<div className={cls.thread}>
+			<div className={cls.comment}>
+				<img
+					src={comment.authorAvatar}
+					alt={comment.authorName}
+					className={cls.avatar}
+				/>
 
-				{isEditing ? (
-					<textarea
-						value={text}
-						onChange={e => setText(e.target.value)}
-						className={cls.editTextarea}
-					/>
-				) : (
-					<p>{comment.content}</p>
-				)}
+				<div className={cls.content}>
+					<div className={cls.header}>
+						<strong>{comment.authorName}</strong>
+						<span>{createdAt}</span>
+					</div>
 
-				<div className={cls.actions}>
 					{isEditing ? (
-						<>
-							<button onClick={handleCancel}>Скасувати</button>
-							<button onClick={handleSave}>Зберегти</button>
-						</>
+						<CommentForm
+							placeholder="Редагувати коментар…"
+							initialValue={comment.content}
+							onSubmit={text => onEdit(comment.id, text)}
+						/>
 					) : (
-						<button onClick={() => setIsEditing(true)}>Редагувати</button>
+						<p className={cls.text}>{comment.content}</p>
 					)}
 
-					<button
-						className={cls.delete}
-						onClick={() => setShowConfirm(true)}
-					>
-						Видалити
-					</button>
-				</div>
+					<div className={cls.actions}>
+						{depth < MAX_DEPTH && (
+							<button
+								onClick={() =>
+									setActiveAction({
+										type: 'reply',
+										commentId: comment.id
+									})
+								}
+								disabled={!!activeAction}
+							>
+								Відповісти
+							</button>
+						)}
 
-				{/* Вкладені коментарі */}
-				{replies.length > 0 && (
-					<div className={cls.replies}>
-						{replies.map(reply => (
-							<CommentItem
-								key={reply.id}
-								comment={reply}
-								allComments={allComments}
-								level={level + 1}
-								onDelete={onDelete}
-								onEdit={onEdit}
-							/>
-						))}
+						{isOwner && (
+							<>
+								<button
+									onClick={() =>
+										setActiveAction({
+											type: 'edit',
+											commentId: comment.id
+										})
+									}
+									disabled={!!activeAction}
+								>
+									Редагувати
+								</button>
+
+								<button
+									className={cls.delete}
+									onClick={() => onDelete(comment.id)}
+								>
+									Видалити
+								</button>
+							</>
+						)}
 					</div>
-				)}
+
+					{isReplying && (
+						<CommentForm
+							placeholder={`Відповідь @${comment.authorName}`}
+							onSubmit={text => onReply(comment.id, text)}
+						/>
+					)}
+				</div>
 			</div>
 
-			{/* Confirm modal для видалення */}
-			{showConfirm && (
-				<ConfirmModal
-					title="Видалити коментар?"
-					message="Коментар і всі відповіді буде видалено без можливості відновлення."
-					onConfirm={handleDeleteConfirm}
-					onCancel={() => setShowConfirm(false)}
-				/>
+			{comment.replies?.length > 0 && (
+				<div className={cls.replies}>
+					{comment.replies.map(reply => (
+						<CommentItem
+							key={reply.id}
+							comment={reply}
+							onReply={onReply}
+							onEdit={onEdit}
+							onDelete={onDelete}
+							depth={depth + 1}
+							activeAction={activeAction}
+							setActiveAction={setActiveAction}
+						/>
+					))}
+				</div>
 			)}
-		</>
+		</div>
 	);
 };
 

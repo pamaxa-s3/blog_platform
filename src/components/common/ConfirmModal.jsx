@@ -1,6 +1,8 @@
 import cls from './common.module.css';
 
-const ConfirmModal = ({ title, message, onConfirm, onCancel }) => {
+const ConfirmModal = ({ isOpen, title, message, onConfirm, onCancel }) => {
+	if (!isOpen) return null;
+
 	return (
 		<div className={cls.backdrop} onClick={onCancel}>
 			<div className={cls.modal} onClick={e => e.stopPropagation()}>

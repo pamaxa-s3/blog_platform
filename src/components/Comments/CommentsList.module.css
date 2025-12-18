@@ -1,0 +1,20 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin-top: 32px;
+}
+
+.wrapper h3 {
+	font-size: 18px;
+}
+
+.loginHint {
+	color: var(--muted);
+	font-size: 14px;
+}
+
+.loginHint a {
+	color: var(--accent);
+	text-decoration: none;
+}

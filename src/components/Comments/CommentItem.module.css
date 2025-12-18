@@ -1,0 +1,97 @@
+.thread {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.comment {
+	display: flex;
+	gap: 12px;
+	background: var(--light);
+	border: 1px solid var(--light2);
+	border-radius: 14px;
+	padding: 12px;
+	box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+
+.avatar {
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+	object-fit: cover;
+	flex-shrink: 0;
+}
+
+.content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.header {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	font-size: 14px;
+}
+
+.header span {
+	color: var(--muted);
+	font-size: 12px;
+}
+
+.text {
+	line-height: 1.5;
+	color: var(--dark);
+}
+
+.actions {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+.actions button {
+	background: none;
+	border: none;
+	padding: 0;
+	font-size: 13px;
+	color: var(--accent);
+	cursor: pointer;
+}
+
+.actions button:disabled {
+	opacity: 0.4;
+	cursor: default;
+}
+
+.delete {
+	color: var(--accent);
+}
+
+.replies {
+	margin-left: 32px;
+	padding-left: 16px;
+	border-left: 2px solid var(--light2);
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 600px) {
+	.comment {
+		flex-direction: column;
+	}
+
+	.avatar {
+		width: 36px;
+		height: 36px;
+	}
+
+	.replies {
+		margin-left: 16px;
+		padding-left: 12px;
+	}
+}

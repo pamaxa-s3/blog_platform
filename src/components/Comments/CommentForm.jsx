@@ -1,43 +1,37 @@
-import { useId, useState } from 'react';
-import cls from './Comments.module.css';
+import { useEffect, useState } from 'react';
+import cls from './CommentForm.module.css';
 
-const CommentForm = ({ onSubmit, placeholder = 'Напишіть коментар...' }) => {
-	const [text, setText] = useState('');
-	const [isLoading, setIsLoading] = useState(false);
-	const textareaId = useId();
+const CommentForm = ({
+	onSubmit,
+	placeholder = 'Ваш коментар…',
+	initialValue = '',
+	onFocus
+}) => {
+	const [text, setText] = useState(initialValue);
+
+	useEffect(() => {
+		setText(initialValue);
+	}, [initialValue]);
 
 	const handleSubmit = e => {
 		e.preventDefault();
 		if (!text.trim()) return;
 
-		setIsLoading(true);
-
-		setTimeout(() => {
-			onSubmit(text);
-			setText('');
-			setIsLoading(false);
-		}, 600);
+		onSubmit(text.trim());
+		setText('');
 	};
 
 	return (
-		<div className={cls.createComment}>
-			<form onSubmit={handleSubmit}>
-				<textarea
-					id={textareaId}
-					value={text}
-					onChange={e => setText(e.target.value)}
-					maxLength={200}
-					placeholder={placeholder}
-				/>
-
-				<div className={cls.formFooter}>
-					<p>{text.length} / 200</p>
-					<button disabled={!text.trim() || isLoading}>
-						{isLoading ? 'Надсилання…' : 'Надіслати'}
-					</button>
-				</div>
-			</form>
-		</div>
+		<form className={cls.form} onSubmit={handleSubmit}>
+			<textarea
+				value={text}
+				onChange={e => setText(e.target.value)}
+				placeholder={placeholder}
+				rows={3}
+				onFocus={onFocus}
+			/>
+			<button type="submit">Надіслати</button>
+		</form>
 	);
 };
 

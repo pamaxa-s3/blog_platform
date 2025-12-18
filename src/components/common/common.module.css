@@ -94,3 +94,38 @@
 .confirm:hover {
 	background: #b91c1c;
 }
+.backdrop {
+	position: fixed;
+	inset: 0;
+	background: rgba(0,0,0,.4);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+}
+
+.modal {
+	background: var(--light);
+	padding: 20px;
+	border-radius: 16px;
+	width: 90%;
+	max-width: 420px;
+	box-shadow: 0 20px 40px rgba(0,0,0,.25);
+}
+
+.actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 12px;
+	margin-top: 20px;
+}
+
+.cancel {
+	background: var(--light2);
+	color: var(--dark);
+}
+
+.confirm {
+	background: var(--accent);
+	color: #fff;
+}
